@@ -1,0 +1,24 @@
+{
+  "name": "cycling-suite-common",
+  "version": "0.1.0",
+  "private": true,
+  "license": "GPL-3.0-or-later",
+  "type": "module",
+  "workspaces": ["packages/ui", "examples/catalog"],
+  "scripts": {
+    "build": "npm run build -w @cycling-suite/ui && npm run build -w @cycling-suite/catalog",
+    "test": "npm run build -w @cycling-suite/ui && node --test tests/*.test.mjs",
+    "dev": "npm run build -w @cycling-suite/ui && npm run dev -w @cycling-suite/catalog",
+    "pack:ui": "npm run build -w @cycling-suite/ui && npm pack -w @cycling-suite/ui --pack-destination artifacts"
+  },
+  "engines": {"node": ">=22"},
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.3.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "typescript": "^5.8.0",
+    "vite": "^6.0.0"
+  }
+}

@@ -1,0 +1,21 @@
+/* Fixed suite defaults; no per-society theme or branding override in the UI. */
+:root {
+  --suite-brand:#1a62b7;
+  --suite-brand-hover:#144d92;
+  --suite-ink:#24364d;
+  --suite-muted:#61738a;
+  --suite-surface:#f5f7fa;
+  --suite-paper:#fff;
+  --suite-border:#dce4ef;
+  --suite-radius:8px;
+  --suite-font:Inter,"Segoe UI",Arial,sans-serif;
+  --suite-space-1:4px;
+  --suite-space-2:8px;
+  --suite-space-3:12px;
+  --suite-space-4:16px;
+  --suite-space-6:24px;
+  --brand:var(--suite-brand);
+  --ink:var(--suite-ink);
+  --surface:var(--suite-surface);
+  --border:var(--suite-border);
+}
