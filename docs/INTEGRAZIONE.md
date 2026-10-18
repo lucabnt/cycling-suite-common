@@ -2,6 +2,23 @@
 
 ## Artefatto versionato senza dipendenza dal percorso del collega
 
+### Procedura automatica
+
+Da questa repository, dopo `npm ci`:
+
+```sh
+npm run sync:ui -- --app ../club-lab --app ../test-analysis
+npm run sync:ui -- --app ../club-lab --app ../test-analysis --check
+```
+
+I percorsi sono argomenti espliciti, non dipendenze dell'app. Il comando esegue test, build e pack della UI; trasferisce il tarball nelle app selezionate; aggiorna dipendenza, installazione e lockfile; registra SHA256, commit e stato del checkout sorgente. Una consegna byte-identica conserva la provenienza originale. `--check` verifica gli artefatti già consegnati senza richiedere che le app usino l'ultima versione di common. Non effettua commit, push o pubblicazione e non aggiorna automaticamente branch mobili.
+
+Una versione già consegnata con byte diversi viene rifiutata: incrementare la versione UI. Revisionare e versionare nell'app tarball, provenienza, package.json e lockfile; poi eseguire i test/build dell'app. Il trasferimento di più app non è una transazione: su un errore successivo verificare i risultati e ripetere il comando dopo la correzione. I vecchi tarball non vengono cancellati automaticamente.
+
+Se il checkout common è modificato, `source_dirty=true` lo rende esplicito: prima della release produrre l'artefatto da commit/tag stabile. I checksum assicurano coerenza dei byte, non sostituiscono la fiducia nella sorgente o firme di pubblicazione.
+
+### Procedura manuale equivalente
+
 1. Nella repository comune: `npm ci`, `npm test`, `npm run build`, `npm run pack:ui`.
 2. Copiare il file da artifacts nella cartella `frontend/vendor/` della propria app.
 3. Dal frontend dell’app eseguire `npm install ./vendor/cycling-suite-ui-0.1.0.tgz --save-exact`.
@@ -26,4 +43,4 @@ Il motore, gli archivi e la sincronizzazione non vengono spostati nella 0.1.0. Q
 
 Una modifica comune: correggere qui → test e catalogo → nuova versione → nuovo tarball → aggiornamento e verifica di ogni app. Le app possono restare temporaneamente su versioni diverse; tenere una matrice di quelle collaudate e non dichiarare automaticamente compatibili nuove versioni.
 
-Matrice iniziale: Fuorigiri frontend 0.8 + UI 0.1.0 è il consumatore di prova; Ammiraglia è da integrare e collaudare nella sua repository. La libreria non impone una pubblicazione sincronizzata degli installer.
+Matrice locale: Fuorigiri frontend 0.8 + UI 0.1.0 e Ammiraglia frontend 0.1.0 + UI 0.1.0. Ogni app conserva i propri test/build. La libreria non impone una pubblicazione sincronizzata degli installer.

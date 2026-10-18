@@ -27,6 +27,13 @@ npm run pack:ui
 
 Produce `artifacts/cycling-suite-ui-0.1.0.tgz`, comprensivo di JS, dichiarazioni TypeScript, CSS, logo, sorgenti e licenza. Non pubblica su npm o GitHub. [Uso nelle app e bootstrap Ammiraglia](docs/INTEGRAZIONE.md).
 
+Per derivare automaticamente il pacchetto nelle app, con test, installazione, lockfile e provenienza:
+
+```sh
+npm run sync:ui -- --app ../club-lab --app ../test-analysis
+npm run sync:ui -- --app ../club-lab --app ../test-analysis --check
+```
+
 I workspaces npm qui organizzano **soltanto le librerie e gli esempi comuni**; le applicazioni rimangono esterne. Non sono necessari submodule Git o collegamenti a un clone fratello in produzione.
 
 ## Licenza e branding

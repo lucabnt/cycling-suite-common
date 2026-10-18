@@ -9,7 +9,8 @@
     "build": "npm run build -w @cycling-suite/ui && npm run build -w @cycling-suite/catalog",
     "test": "npm run build -w @cycling-suite/ui && node --test tests/*.test.mjs",
     "dev": "npm run build -w @cycling-suite/ui && npm run dev -w @cycling-suite/catalog",
-    "pack:ui": "npm run build -w @cycling-suite/ui && npm pack -w @cycling-suite/ui --pack-destination artifacts"
+    "pack:ui": "npm run build -w @cycling-suite/ui && npm pack -w @cycling-suite/ui --pack-destination artifacts",
+    "sync:ui": "node scripts/sync-ui.mjs"
   },
   "engines": {"node": ">=22"},
   "devDependencies": {
