@@ -1,5 +1,5 @@
 // Society branding is fixed. Only the consuming application's name varies.
-export const attribution='Sviluppato da Luca Bontempi per Progetto CIclismo - Rodengo Saiano A.S.D.';
+export const attribution='Sviluppato da Luca Bontempi per Progetto Ciclismo - Rodengo Saiano A.S.D.';
 const societyUrl='https://www.asdprogettociclismorodengosaiano.it/';
 const societyLogo=new URL('./assets/progetto-ciclismo.png',import.meta.url).href;
 
