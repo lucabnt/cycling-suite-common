@@ -1,13 +1,31 @@
 /** Explicit, reproducible delivery. Applications never depend on a sibling at runtime. */
 import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
-import {copyFileSync, existsSync, mkdirSync, readFileSync, writeFileSync} from 'node:fs';
+import {copyFileSync, existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync} from 'node:fs';
 import {resolve, dirname, basename} from 'node:path';
 import {fileURLToPath} from 'node:url';
 
 const root=resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const json=p=>JSON.parse(readFileSync(p,'utf8'));
 const digest=(raw,algorithm='sha256',encoding='hex')=>createHash(algorithm).update(raw).digest(encoding);
+export function sourceDigest(directory=resolve(root,'packages/ui')) {
+  const hash=createHash('sha256');
+  function visit(relative) {
+    const path=resolve(directory,relative);
+    for(const entry of readdirSync(path,{withFileTypes:true}).sort((a,b)=>a.name.localeCompare(b.name,'en'))) {
+      const name=relative?relative+'/'+entry.name:entry.name;
+      if(entry.isDirectory())visit(name);
+      else {hash.update(name+'\0');hash.update(readFileSync(resolve(directory,name)));hash.update('\0');}
+    }
+  }
+  for(const name of ['package.json','tsconfig.json','LICENSE','NOTICE.md','README.md']) {hash.update(name+'\0');hash.update(readFileSync(resolve(directory,name)));hash.update('\0');}
+  visit('src');visit('scripts');return hash.digest('hex');
+}
+export function verifyCurrentDelivery(app) {
+  const meta=verifyDelivery(app),pkg=json(resolve(root,'packages/ui/package.json'));
+  if(meta.version!==pkg.version || meta.source_digest!==sourceDigest())throw new Error('UI comune superata: rigenerare con sync:ui e una nuova versione se già consegnata.');
+  return meta;
+}
 function runNpm(args,cwd) {
   // npm's JS entry point avoids shell interpolation and Windows .cmd quoting.
   const cli=process.env.npm_execpath;
@@ -41,7 +59,7 @@ function main() {
     if(app===root || !existsSync(resolve(app,'frontend/package.json')))throw new Error('Frontend applicazione non trovato: '+app);
   }
   if(check) {
-    for(const app of apps) {const m=verifyDelivery(app); console.log(`${app}: UI ${m.version} verificata (${m.sha256}).`);}
+    for(const app of apps) {const m=verifyCurrentDelivery(app); console.log(`${app}: UI ${m.version} allineata alla sorgente comune (${m.sha256}).`);}
     return;
   }
   runNpm(['test'],root);
@@ -51,7 +69,7 @@ function main() {
   const raw=readFileSync(resolve(root,'artifacts',artifact));
   const source_revision=execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim();
   const source_dirty=Boolean(execFileSync('git',['status','--porcelain','--untracked-files=all'],{cwd:root,encoding:'utf8'}).trim());
-  const meta={package:pkg.name,version:pkg.version,artifact,sha256:digest(raw),source_repository:'cycling-suite-common',source_revision,source_dirty,license:pkg.license,contains_sources:true};
+  const meta={package:pkg.name,version:pkg.version,artifact,sha256:digest(raw),source_digest:sourceDigest(),source_repository:'cycling-suite-common',source_revision,source_dirty,license:pkg.license,contains_sources:true};
   // Prepare every target before mutation; no guessed paths or branch tracking.
   for(const app of apps) {
     const target=resolve(app,'frontend/vendor');mkdirSync(target,{recursive:true});

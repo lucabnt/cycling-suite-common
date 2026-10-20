@@ -3,3 +3,7 @@ export {DataTable, SortableTable} from './tables.js';
 export type {Column, DataRow} from './tables.js';
 export {compareValues, compareCellText} from './sorting.js';
 export {SuiteBranding, attribution} from './branding.js';
+export {Dialog} from './Dialog.js';
+export type {DialogProps} from './Dialog.js';
+export {TimeInput,validTimes} from './time.js';
+export {clock,parseClock} from './timeModel.js';

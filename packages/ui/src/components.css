@@ -7,3 +7,12 @@
 .suite-footer div{flex:1;min-width:180px}
 .suite-footer a:focus-visible,.table-scroll button:focus-visible{outline:3px solid var(--suite-brand);outline-offset:2px}
 @media(max-width:720px){.suite-footer img{width:100px}.suite-footer div{display:block}}
+
+/* Opaque native modal surface: desktop/Qt and mobile share the same geometry. */
+.suite-dialog{position:fixed;background:var(--suite-paper);color:var(--suite-ink);border:1px solid var(--suite-border);border-radius:16px;padding:32px;width:520px;max-width:calc(100vw - 48px);max-height:calc(100dvh - 48px);overflow:auto;overscroll-behavior:contain;isolation:isolate;box-shadow:0 24px 80px #0005}
+.suite-dialog.wide{width:1100px}.suite-dialog::backdrop{background:rgba(18,30,48,.86);backdrop-filter:none}
+.suite-dialog-toolbar{position:sticky;top:-32px;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:16px;background:var(--suite-paper);border-bottom:1px solid var(--suite-border);margin:-32px -32px 22px;padding:14px 24px;box-shadow:0 3px 8px #1231}
+.suite-dialog-toolbar strong{font-size:14px}.suite-dialog-close{position:static;flex-shrink:0;font-size:28px;background:#f0f4f9;color:var(--suite-ink);width:42px;height:42px;display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:8px;padding:0;cursor:pointer}
+.suite-dialog h2{font-size:24px;margin:8px 0 22px}.suite-dialog :is(input,select,textarea){max-width:100%}
+.time-input{border:1px solid var(--suite-border);padding:12px;border-radius:8px;display:flex;flex-wrap:wrap;gap:10px}.time-input label{flex:1;min-width:100px;display:flex;flex-direction:column;gap:6px;font-size:12px}.time-input small{flex-basis:100%}
+@media(max-width:760px){.suite-dialog{padding:18px;max-width:calc(100vw - 16px);max-height:calc(100dvh - 16px)}.suite-dialog-toolbar{top:-18px;margin:-18px -18px 18px;padding:10px 16px}}

@@ -1,5 +1,6 @@
 /* Fixed suite defaults; no per-society theme or branding override in the UI. */
 :root {
+  font-family:var(--suite-font);color:var(--suite-ink);background:var(--suite-surface);font-synthesis:none;font-size:14px;font-weight:400;
   --suite-brand:#1a62b7;
   --suite-brand-hover:#144d92;
   --suite-ink:#24364d;

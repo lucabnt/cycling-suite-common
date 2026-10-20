@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {createElement as h} from 'react';
 import {renderToStaticMarkup as render} from 'react-dom/server';
 import {readFile} from 'node:fs/promises';
-import {compareValues,compareCellText,DataTable,SortableTable,Field,SuiteBranding,attribution} from '../packages/ui/dist/index.js';
+import {compareValues,compareCellText,DataTable,SortableTable,Field,SuiteBranding,attribution,Dialog,TimeInput,clock,parseClock} from '../packages/ui/dist/index.js';
 
 test('numeric order and missing values remain distinct in both directions',()=>{
  for(const ascending of [true,false]){
@@ -33,4 +33,27 @@ test('fixed society branding and local logo work for either product',async()=>{
 test('field label preserves accessible association and escapes text',()=>{
  const html=render(h(Field,{label:'Nome <atleta>',htmlFor:'name'},h('input',{id:'name'})));
  assert.match(html,/for="name"/);assert.match(html,/Nome &lt;atleta&gt;/);
+});
+
+
+test('shared editor has native modal semantics and localized controls without form submission',()=>{
+ for(const locale of ['it','en']){
+  const html=render(h(Dialog,{title:'Editor sintetico',locale,busy:true,onClose(){}},h('input',{defaultValue:'A'})));
+  assert.match(html,/<dialog[^>]*role="dialog"[^>]*aria-modal="true"/);
+  assert.match(html,/aria-label="Editor sintetico"/);
+  assert.match(html,/<button[^>]*type="button"[^>]*disabled/);
+  assert.ok(html.includes(locale==='en'?'Close dialog':'Chiudi finestra'));
+ }
+});
+
+test('shared time control keeps empty, zero, fractional seconds and invalid input distinct',()=>{
+ assert.equal(parseClock('23:45'),1425);assert.equal(clock(1425),'23:45');
+ assert.equal(parseClock('23:60'),null);assert.equal(parseClock('23.45'),null);
+ assert.equal(parseClock('0:00'),0);assert.equal(parseClock('1:01,125'),61.125);
+ assert.equal(clock(61.125),'1:01.125');assert.equal(clock(59.9999),'1:00');
+ assert.equal(parseClock('-1:00'),null);
+ const html=render(h(TimeInput,{label:'Durata',value:0,onChange(){},locale:'en'}));
+ assert.match(html,/Seconds/);assert.match(html,/value="0:00"/);
+ const empty=render(h(TimeInput,{label:'Durata',value:null,onChange(){}}));
+ assert.doesNotMatch(empty,/value="0:00"/);
 });

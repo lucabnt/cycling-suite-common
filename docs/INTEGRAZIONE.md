@@ -11,7 +11,7 @@ npm run sync:ui -- --app ../club-lab --app ../test-analysis
 npm run sync:ui -- --app ../club-lab --app ../test-analysis --check
 ```
 
-I percorsi sono argomenti espliciti, non dipendenze dell'app. Il comando esegue test, build e pack della UI; trasferisce il tarball nelle app selezionate; aggiorna dipendenza, installazione e lockfile; registra SHA256, commit e stato del checkout sorgente. Una consegna byte-identica conserva la provenienza originale. `--check` verifica gli artefatti già consegnati senza richiedere che le app usino l'ultima versione di common. Non effettua commit, push o pubblicazione e non aggiorna automaticamente branch mobili.
+I percorsi sono argomenti espliciti, non dipendenze dell'app. Il comando esegue test, build e pack della UI; trasferisce il tarball nelle app selezionate; aggiorna dipendenza, installazione e lockfile; registra SHA256, commit e stato del checkout sorgente. Una consegna byte-identica conserva la provenienza originale. `--check` verifica gli artefatti consegnati e richiede che versione e impronta delle sorgenti corrispondano al common corrente. Un vecchio pacchetto coerente ma superato viene rifiutato. Le verifiche standalone delle app verificano invece il pacchetto fissato nel clone, senza un repository fratello. Non effettua commit, push o pubblicazione e non aggiorna automaticamente branch mobili.
 
 Una versione già consegnata con byte diversi viene rifiutata: incrementare la versione UI. Revisionare e versionare nell'app tarball, provenienza, package.json e lockfile; poi eseguire i test/build dell'app. Il trasferimento di più app non è una transazione: su un errore successivo verificare i risultati e ripetere il comando dopo la correzione. I vecchi tarball non vengono cancellati automaticamente.
 
@@ -21,7 +21,7 @@ Se il checkout common è modificato, `source_dirty=true` lo rende esplicito: pri
 
 1. Nella repository comune: `npm ci`, `npm test`, `npm run build`, `npm run pack:ui`.
 2. Copiare il file da artifacts nella cartella `frontend/vendor/` della propria app.
-3. Dal frontend dell’app eseguire `npm install ./vendor/cycling-suite-ui-0.1.0.tgz --save-exact`.
+3. Dal frontend dell’app eseguire `npm install ./vendor/cycling-suite-ui-0.2.2.tgz --save-exact`.
 4. Versionare tarball e package-lock.json nell’app. Il tarball contiene anche i sorgenti GPL, le dichiarazioni TypeScript, il logo e LICENSE.
 5. Registrare in un file di provenienza versione, SHA256 e commit/tag della repository comune. Il tag non va spostato dopo la consegna.
 
@@ -29,7 +29,7 @@ La normale build dell’app usa `npm ci` e non cerca cartelle sul PC dello svilu
 
 ## Primo uso in Ammiraglia
 
-React 19 + TypeScript. Importare tema/componenti e gli export documentati in packages/ui/README.md. La prima versione non impone sidebar o menu: conservare le voci specifiche di Ammiraglia e seguire il catalogo per campi/tabelle/branding. Non copiare style.css o le pagine di analisi di Fuorigiri come base permanente.
+React 19 + TypeScript. Importare tema/componenti e gli export documentati in packages/ui/README.md. La versione 0.2.2 fornisce gli stili della shell: importare `theme.css`, `components.css`, `application.css` e infine gli stili delle pagine. Conservare nomi, loghi applicativi e voci specifiche. I wrapper `Modal`/`Dialog` devono delegare al componente comune; evitare copie di componenti, validazione tempi o CSS condivisi. Non copiare style.css o le pagine di analisi di Fuorigiri come base permanente.
 
 L’app importa `SuiteBranding` con productName="Ammiraglia"; non aggiungere una preferenza per cambiarne società/logo/attribuzione. Le autorizzazioni e gli stati di sync devono provenire dal proprio backend: il pacchetto UI non li implementa né li simula nelle app reali.
 
@@ -43,4 +43,4 @@ Il motore, gli archivi e la sincronizzazione non vengono spostati nella 0.1.0. Q
 
 Una modifica comune: correggere qui → test e catalogo → nuova versione → nuovo tarball → aggiornamento e verifica di ogni app. Le app possono restare temporaneamente su versioni diverse; tenere una matrice di quelle collaudate e non dichiarare automaticamente compatibili nuove versioni.
 
-Matrice locale: Fuorigiri frontend 0.8 + UI 0.1.0 e Ammiraglia frontend 0.1.0 + UI 0.1.0. Ogni app conserva i propri test/build. La libreria non impone una pubblicazione sincronizzata degli installer.
+Matrice locale corrente: Fuorigiri frontend 0.10.0 + UI 0.2.2 e Ammiraglia frontend 0.1.0 + UI 0.2.2. Ogni app conserva i propri test/build. La libreria non impone una pubblicazione sincronizzata degli installer.

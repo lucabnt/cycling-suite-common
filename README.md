@@ -2,11 +2,11 @@
 
 Repository autonoma delle librerie condivise da **Fuorigiri Performance Lab** e **Ammiraglia**. Le applicazioni conservano repository, installer, database e versioni propri. Questa repository non contiene né avvia le due applicazioni.
 
-## Stato 0.1.0
+## Stato UI 0.2.2
 
-Primo pacchetto realmente utilizzabile: `@cycling-suite/ui`, React 19 + TypeScript, senza motori fisiologici, rete o accesso al database. Include tema a variabili CSS, Field, DataTable, SortableTable e SuiteBranding con logo societario originale locale. Il catalogo interattivo mostra i due nomi applicativi, filtri, ordinamento, zero e mancanti, stato disabilitato e branding fisso.
+Pacchetto condiviso: `@cycling-suite/ui`, React 19 + TypeScript, senza motori fisiologici, rete o accesso al database. Include tema a variabili CSS, Field, DataTable, SortableTable e SuiteBranding con logo societario originale locale. Il catalogo interattivo mostra i due nomi applicativi, filtri, ordinamento, zero e mancanti, stato disabilitato e branding fisso.
 
-Il codice di origine è estratto da Fuorigiri, commit `e1f01bc`, preservandone la licenza GPL-3.0-or-later. Non è ancora un design system completo: shell, navigazione, modali, client e backend sono fasi successive. [Confini e decisioni](docs/ARCHITETTURA.md).
+Il codice di origine è estratto da Fuorigiri, commit `e1f01bc`, e riallineato alla UI 0.10.0 del commit `fd569ca`, preservandone la licenza GPL-3.0-or-later. La UI 0.2.2 centralizza anche shell/navigazione responsive, controlli, liste/tabelle/riepiloghi, finestre native con testata fissa e protezione delle modifiche, input tempi e validazione. Client e backend restano nelle applicazioni. [Confini e decisioni](docs/ARCHITETTURA.md).
 
 ## Sviluppo
 
@@ -25,7 +25,7 @@ Catalogo: http://127.0.0.1:8782. La prima build compila la libreria; dopo averne
 npm run pack:ui
 ```
 
-Produce `artifacts/cycling-suite-ui-0.1.0.tgz`, comprensivo di JS, dichiarazioni TypeScript, CSS, logo, sorgenti e licenza. Non pubblica su npm o GitHub. [Uso nelle app e bootstrap Ammiraglia](docs/INTEGRAZIONE.md).
+Produce `artifacts/cycling-suite-ui-0.2.2.tgz`, comprensivo di JS, dichiarazioni TypeScript, CSS, logo, sorgenti e licenza. Non pubblica su npm o GitHub. [Uso nelle app e bootstrap Ammiraglia](docs/INTEGRAZIONE.md).
 
 Per derivare automaticamente il pacchetto nelle app, con test, installazione, lockfile e provenienza:
 

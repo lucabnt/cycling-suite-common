@@ -1,18 +1,36 @@
 {
   "name": "@cycling-suite/ui",
-  "version": "0.1.0",
-  "description": "Componenti React e identità visiva condivisi fra Fuorigiri e Ammiraglia",
+  "version": "0.2.2",
+  "description": "Componenti React e identit\u00c3\u00a0 visiva condivisi fra Fuorigiri e Ammiraglia",
   "license": "GPL-3.0-or-later",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
-    ".": {"types": "./dist/index.d.ts", "import": "./dist/index.js"},
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
     "./theme.css": "./dist/theme.css",
-    "./components.css": "./dist/components.css"
+    "./components.css": "./dist/components.css",
+    "./application.css": "./dist/application.css"
   },
-  "files": ["dist", "src", "scripts", "LICENSE", "README.md", "NOTICE.md", "tsconfig.json"],
-  "sideEffects": ["**/*.css"],
-  "peerDependencies": {"react": "^19.0.0"},
-  "scripts": {"build": "tsc -p tsconfig.json && node scripts/copy-assets.mjs"}
+  "files": [
+    "dist",
+    "src",
+    "scripts",
+    "LICENSE",
+    "README.md",
+    "NOTICE.md",
+    "tsconfig.json"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "peerDependencies": {
+    "react": "^19.0.0"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json && node scripts/copy-assets.mjs"
+  }
 }

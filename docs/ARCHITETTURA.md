@@ -1,4 +1,4 @@
-# Decisioni iniziali — 0.1.0
+# Decisioni architetturali — UI 0.2.2
 
 ## ADR-001: repository esterna e applicazioni autonome
 
@@ -10,7 +10,7 @@ All’interno di questa sola repository i workspaces npm collegano libreria ed e
 
 Implementati UI/tokens, campi, tabelle, branding e catalogo. Non si copia l’intero style.css di Fuorigiri: contiene layout applicativo e regole globali stratificate. Si estraggono componenti con un contratto ristretto e CSS esplicito; i fogli legacy vengono ridotti solo dove il componente comune ne assume la responsabilità.
 
-La shell e le modali verranno estratte in una versione successiva, con test di focus/tastiera e comportamento desktop/mobile. Nome/icona e voci di menu rimangono specifici per app; logo societario e attribuzione sono fissi. Nessun nuovo tema scuro è dichiarato implementato.
+Dalla UI 0.2.2 shell e controlli globali, liste/tabelle/riepiloghi, modali e tempi appartengono alla libreria. `application.css` conserva la cascata più recente di Fuorigiri 0.10.0 e viene importato da entrambe le app; i CSS locali contengono i layout delle pagine e le funzionalità specifiche. `Dialog` usa il dialog nativo per focus, Esc e sfondo inerte, con superficie opaca e testata fissa; `TimeInput` conserva secondi/null e mm:ss. I moduli locali omonimi sono soltanto adattatori di lingua/compatibilità. La libreria non importa traduzioni o modelli delle app. Nome/icona e voci di menu rimangono specifici per app; logo societario e attribuzione sono fissi. Nessun nuovo tema scuro è dichiarato implementato.
 
 ## ADR-003: versioni e distribuzione
 
