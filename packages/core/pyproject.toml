@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cycling-suite-core"
+version = "0.1.2"
+description = "Shared runtime primitives derived from Fuorigiri"
+requires-python = ">=3.12"
+license = "GPL-3.0-or-later"
+
+[tool.setuptools.packages.find]
+where = ["src"]

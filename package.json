@@ -7,7 +7,9 @@
   "workspaces": ["packages/ui", "examples/catalog"],
   "scripts": {
     "build": "npm run build -w @cycling-suite/ui && npm run build -w @cycling-suite/catalog",
-    "test": "npm run build -w @cycling-suite/ui && node --test tests/*.test.mjs",
+    "test": "npm run build -w @cycling-suite/ui && node --test tests/*.test.mjs && npm run test:core",
+    "test:core": "python -m unittest discover -s tests -p test_core.py -v",
+    "sync:core": "python scripts/sync-core.py",
     "dev": "npm run build -w @cycling-suite/ui && npm run dev -w @cycling-suite/catalog",
     "pack:ui": "npm run build -w @cycling-suite/ui && npm pack -w @cycling-suite/ui --pack-destination artifacts",
     "sync:ui": "node scripts/sync-ui.mjs"

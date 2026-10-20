@@ -2,6 +2,9 @@
 
 Common è l'unica fonte di verità delle parti condivise di Fuorigiri (`test-analysis`) e Ammiraglia (`club-lab`). Le applicazioni mantengono repository, dati e build autonomi.
 
+- Il runtime Python `cycling-suite-core` contiene portachiavi OS, trasporti immutabili, lock di istanza e finestra Qt derivati da Fuorigiri. Dati, firme/accessi, formati di sync, lifecycle server e compatibilità prodotto restano nelle app. [Consegna e confini](docs/CORE_PYTHON.md).
+- Per il core incrementare insieme `packages/core/pyproject.toml` e `src/cycling_suite/__init__.py` prima di cambiare una wheel consegnata. Usare `python scripts/sync-core.py --app ../club-lab --app ../test-analysis --install`, poi `--check`; niente modifiche manuali al vendor. Verificare i consumatori e la loro installazione autonoma, preservando servizi vault, canali e lock esistenti. `npm test` include i test Python del core.
+
 - Modificare qui token, shell/controlli, liste/tabelle/riepiloghi, Field, Dialog, tempi e branding societario. Non copiare implementazioni o CSS nelle app. Le app conservano adattatori di lingua, nomi/loghi prodotto, menu e layout/funzioni specifici.
 - Leggere le istruzioni della repository sorella prima di modificarla; preservare dati e modifiche preesistenti. Non delegare ad agenti senza richiesta esplicita.
 - Incrementare la versione di `packages/ui` prima di cambiare i byte di una versione già consegnata; aggiornare la dipendenza del catalogo e il lockfile. Non cambiare le versioni prodotto per il solo aggiornamento della libreria.

@@ -6,3 +6,5 @@ artifacts/*
 .DS_Store
 .local/
 output/
+__pycache__/
+*.egg-info/
