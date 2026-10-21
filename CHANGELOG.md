@@ -1,3 +1,23 @@
+# Riallineamento documentazione e catalogo Android — 21 ottobre 2026
+
+Confronto con Fuorigiri `30d0f0a`, convenzioni TD-98–107. Sorgenti UI 0.2.8 già coerenti con il tarball consumato: nessuna nuova versione o modifica ai byte della libreria. Aggiornati README, architettura, guida Android e matrice dei consumatori; aggiunti contratti API, catalogo Android interattivo e regressioni per pagina controllata, superfici immersive e stati recuperabili. Esiti delle verifiche in [UI_ANDROID.md](docs/UI_ANDROID.md). Ammiraglia conserva UI 0.2.2; nessun installer o APK rigenerato.
+
+# 0.2.8 — 21 ottobre 2026
+
+Variante brand-end per marchi con testo allineato a destra. Fuorigiri Android dispone nome/tagline prima dell’icona, a destra nella testata.
+
+# 0.2.7 — 21 ottobre 2026
+
+Dialog fullscreen con chiusura flottante e titolo accessibile conservato, ChartFrame fullscreen e FloatingPanel per comandi richiamabili. Marchio orizzontale con icona non comprimibile. Consegna a Fuorigiri soltanto.
+
+# 0.2.6 — 21 ottobre 2026
+
+Cancel dei dialoghi annidati non si propaga al genitore; focus senza spostare lo scroll. ChartFrame supporta comandi sotto il grafico. Testata Android va a capo anche in landscape.
+
+# 0.2.5 — 21 ottobre 2026
+
+Densità Android moderata, testata/contesto persistenti, ChartFrame e LoadingState accessibili, animazioni ridotte. Consegna esplicita a Fuorigiri soltanto; prove nel prodotto.
+
 # Changelog
 
 ## 0.1.0 — 18 ottobre 2026
@@ -10,3 +30,11 @@
 # 20 ottobre 2026 — core Python 0.1.2
 
 Estratti da Fuorigiri portachiavi OS, trasporti immutabili cartella/WebDAV, lock di istanza e shell Qt. Wheel deterministica con sorgenti/licenza, consegna automatica e verifica dei consumatori Fuorigiri/Ammiraglia. UI 0.2.2 invariata; archivi, autorizzazioni e formati restano applicativi. [Guida](docs/CORE_PYTHON.md).
+
+## UI 0.2.3 — Android, 20 ottobre 2026
+
+- RecordCards paginati, filtri richiudibili e FormActions riutilizzabili; controlli touch e tastiere numeriche Android, scorrimento al campo invalido. Nessuna dipendenza da dati o storage di prodotto. Consegna locale esplicita a Fuorigiri; nessuna pubblicazione o aggiornamento implicito delle altre app.
+
+## UI 0.2.4 — ritorno agli elenchi
+
+- Paginazione controllabile dal prodotto per conservare pagina e filtri quando si torna da un profilo; allineamento orizzontale delle etichette checkbox nei moduli Android.

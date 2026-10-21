@@ -1,4 +1,4 @@
-# Decisioni architetturali — UI 0.2.2
+# Decisioni architetturali — UI 0.2.8
 
 ## ADR-001: repository esterna e applicazioni autonome
 
@@ -20,6 +20,12 @@ Pubblicazione su un registro rimandata fino alla scelta dell’organizzazione e 
 
 ## ADR-004: dati, client e servizi Python
 
-Le directory client/contracts/suite_core non vengono presentate come librerie funzionanti. Saranno introdotte quando ci saranno estrazione e test reali. Candidati: API/bridge desktop-mobile, schema versionato di società/atleta/gruppo/antropometria, archivio/revisioni/accessi/backup/sync. Motori dei test e pianificazione allenamenti restano nelle app.
+Il runtime `cycling-suite-core` è disponibile in wheel versionata per portachiavi OS, trasporti immutabili, lock di istanza e finestra Qt: [confini e consegna](CORE_PYTHON.md). API/bridge Android, schemi di prodotto, archivio/revisioni/accessi/backup/sync, motori dei test e pianificazione allenamenti restano nelle app. Le directory client/contracts non vengono presentate come librerie funzionanti.
 
 Condividere una libreria non autorizza a condividere SQLite o chiavi. Archivi locali separati, nessuna migrazione automatica o connessione fra app. Prima dello scambio servono identità stabili, compatibilità degli eventi e record sconosciuti, provenienza, autorizzazioni, regole di conflitto e test incrociati delle versioni. Le liste di tipi ammesse da Fuorigiri oggi non contemplano i record di allenamento.
+
+## ADR-005: convenzioni Android e superfici immersive
+
+UI 0.2.3–0.2.8 centralizza schede paginate, filtri richiudibili, azioni dei moduli, densità mobile, stati di caricamento e superfici grafiche/fullscreen. Gli eventi cancel non attraversano i dialoghi annidati. Il nome accessibile resta presente anche quando il titolo non occupa una fascia visiva; il pannello comandi è richiamabile e chiuso inizialmente. L’ordine del marchio è scelto dal prodotto con variante comune `brand-end`.
+
+Cronologia, ultima società, gesti e motore grafico, priorità del Back, orientamento e barre native sono applicativi. Non si introduce un bridge Android universale o una dipendenza da Plotly nel common. [Contratti](UI_ANDROID.md) e [pratiche Android](ANDROID_BEST_PRACTICES.md); Fuorigiri consuma 0.2.8, Ammiraglia 0.2.2. Le prove web del catalogo restano distinte dai gate nativi.

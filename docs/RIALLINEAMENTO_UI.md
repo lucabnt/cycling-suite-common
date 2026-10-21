@@ -1,5 +1,7 @@
 # Riallineamento UI — 20 ottobre 2026
 
+Questo documento conserva il collaudo iniziale della UI 0.2.2. Per lo stato corrente Android del **21 ottobre 2026** consultare [contratti e convenzioni 0.2.8](UI_ANDROID.md) e [matrice dei consumatori](INTEGRAZIONE.md#coordinamento-dei-rilasci): Fuorigiri è su 0.2.8, Ammiraglia resta su 0.2.2.
+
 ## Differenze trovate
 
 Le app consumavano UI 0.1.0. Fuorigiri 0.10.0 (`fd569ca`) conservava localmente shell/controlli e stili, correzioni responsive e per superfici opache desktop, Dialog con testata fissa/focus/Esc/conferma di scarto, TimeInput e parsing mm:ss. Ammiraglia aveva una shell simile ma duplicata e una modale nativa distinta, senza conferma delle modifiche. Common conteneva soltanto token, campi, tabelle e branding.

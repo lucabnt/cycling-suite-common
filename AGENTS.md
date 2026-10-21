@@ -13,3 +13,11 @@ Common è l'unica fonte di verità delle parti condivise di Fuorigiri (`test-ana
 - Import CSS: tema, componenti, application.css, poi layout specifici. Per i cambi comuni usare nuova versione e consegna esplicita, mai un branch mobile o un percorso a una repository sorella nelle dipendenze.
 - Niente dati reali, rete o storage nella UI comune. Preservare GPL, sorgenti e branding societario fisso. Il codice comune non condivide automaticamente archivi, autorizzazioni o chiavi.
 - Riferimenti: README.md, docs/ARCHITETTURA.md, docs/INTEGRAZIONE.md e docs/RIALLINEAMENTO_UI.md. Mantenere queste istruzioni aggiornate quando cambiano i confini stabili.
+
+- Per nuove app o modifiche Android leggere [ANDROID_BEST_PRACTICES.md](docs/ANDROID_BEST_PRACTICES.md). Documentare adozione e verifiche nel prodotto; non assumere che una pratica descritta sia già collaudata in tutte le app.
+
+- Android: ChartFrame/LoadingState e densità sono comuni (UI 0.2.6); modi touch, caricamento del motore grafico e contesto restano nel prodotto. Cancel dei dialoghi annidati deve fermarsi al dialogo attivo, senza chiudere il genitore. Fuorigiri usa solo hamburger a sinistra, comandi sotto il grafico e Scorri pagina predefinito; Back esce prima da Esplora/Zoom. Conservare questa politica e i gate reali nella guida Android, senza attribuire automaticamente l’adozione alle altre app.
+
+- UI 0.2.7: Dialog/ChartFrame fullscreen e FloatingPanel per superfici immersive senza fascia di titolo visiva; conservare nome accessibile e chiusura. Il prodotto gestisce orientamento e barre native con ripristino; marchio sempre in riga; Fuorigiri Android in testata usa testo allineato a destra e icona alla sua destra (brand-end, UI 0.2.8).
+
+- Mantenere [contratti Android e matrice di adozione](docs/UI_ANDROID.md) e catalogo `/?android` coerenti con la guida canonica; verificare paginazione controllata, cancel annidato e superfici immersive. Il catalogo è una prova web con dati sintetici: non equivale a collaudo del bridge, APK, IME o telefono. Aggiornare separatamente la matrice dei consumatori in INTEGRAZIONE.md; una libreria disponibile non prova l’adozione nel prodotto.

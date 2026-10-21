@@ -1,7 +1,7 @@
 {
   "name": "@cycling-suite/ui",
-  "version": "0.2.2",
-  "description": "Componenti React e identit\u00c3\u00a0 visiva condivisi fra Fuorigiri e Ammiraglia",
+  "version": "0.2.8",
+  "description": "Componenti React e identitÃ  visiva condivisi fra Fuorigiri e Ammiraglia",
   "license": "GPL-3.0-or-later",
   "type": "module",
   "main": "./dist/index.js",

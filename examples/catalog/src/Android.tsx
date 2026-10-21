@@ -1,0 +1,18 @@
+import {useEffect,useState} from 'react';
+import {ChartFrame,CollapsibleFilters,Dialog,Field,FloatingPanel,FormActions,LoadingState,RecordCards,TimeInput} from '@cycling-suite/ui';
+
+const records=Array.from({length:25},(_,i)=>({id:String(i),title:`Record sintetico ${i+1}`,details:[{label:'Valore · unità demo',value:i===1?'—':i}]}));
+
+/** UI contracts only: no bridge, native rotation, chart engine or product data. */
+export function AndroidCatalog(){
+ const [query,setQuery]=useState(''),[page,setPage]=useState(0),[selected,setSelected]=useState<string|null>(null),[child,setChild]=useState(false),[wide,setWide]=useState(false),[seconds,setSeconds]=useState<number|null>(0);
+ useEffect(()=>{const root=document.documentElement,previous=root.classList.contains('android');root.classList.add('android');return()=>{if(!previous)root.classList.remove('android')}},[]);
+ return <main className="catalog android-catalog">
+  <header><a href="/">Catalogo desktop</a><div className="brand brand-end"><div>Catalogo<small>ANDROID · DATI SINTETICI</small></div><span className="brand-icon" aria-hidden="true">◉</span></div><p className="suite-context">Anteprima web dei componenti comuni · nessun contenitore Android nativo.</p></header>
+  <h1>Convenzioni Android condivise</h1>
+  <section className="panel"><h2>Elenchi e filtri</h2><CollapsibleFilters label={`Filtri · ${records.filter(r=>r.title.includes(query)).length} risultati`}><Field label="Cerca record"><input value={query} onChange={e=>{setQuery(e.target.value);setPage(0)}}/></Field></CollapsibleFilters><RecordCards items={records.filter(r=>r.title.includes(query))} actionLabel="Apri editor" onOpen={setSelected} pageSize={5} pageIndex={page} onPageChange={setPage}/></section>
+  <section className="panel"><h2>Superfici e caricamento</h2><LoadingState title="Esempio di errore recuperabile" detail="Stato dimostrativo: nessun caricamento è in corso." retryLabel="Apri vista dimostrativa" retry={()=>setWide(true)}/><button type="button" onClick={()=>setWide(true)}>Apri superficie fullscreen</button><p>Il prodotto gestisce gesti, Indietro, orientamento e barre native. Questa anteprima verifica soltanto geometria e accessibilità web.</p></section>
+  {selected!==null&&<Dialog title={`Editor · Record sintetico ${Number(selected)+1}`} editor onClose={()=>setSelected(null)}><form onSubmit={e=>{e.preventDefault();setSelected(null)}}><Field label="Nome sintetico"><input required defaultValue={`Record sintetico ${Number(selected)+1}`}/></Field><TimeInput label="Durata" value={seconds} onChange={setSeconds}/><button type="button" onClick={()=>setChild(true)}>Apri dialogo annidato</button><p>Esc nel dialogo figlio chiude solo il figlio. Nell’editor modificato chiede conferma dello scarto.</p><FormActions><button type="submit">Conferma esempio</button></FormActions></form>{child&&<Dialog title="Dialogo figlio" onClose={()=>setChild(false)}><p>Nessun dato viene salvato. Premi Esc per tornare all’editor.</p></Dialog>}</Dialog>}
+  {wide&&<Dialog title="Superficie immersiva dimostrativa" fullscreen onClose={()=>setWide(false)}><ChartFrame label="Superficie sintetica senza motore grafico" fullscreen><div className="suite-chart-surface demo-surface"><p>Superficie immersiva</p><p>Il nome accessibile e la chiusura restano disponibili.</p></div><FloatingPanel label="Comandi e dati"><p>Pannello chiuso inizialmente, con contenuti forniti dal prodotto.</p><table><caption>Dati sintetici · unità demo</caption><tbody><tr><th scope="row">Zero</th><td>0</td></tr><tr><th scope="row">Mancante</th><td>—</td></tr></tbody></table></FloatingPanel></ChartFrame></Dialog>}
+ </main>;
+}

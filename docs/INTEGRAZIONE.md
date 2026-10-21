@@ -21,7 +21,7 @@ Se il checkout common è modificato, `source_dirty=true` lo rende esplicito: pri
 
 1. Nella repository comune: `npm ci`, `npm test`, `npm run build`, `npm run pack:ui`.
 2. Copiare il file da artifacts nella cartella `frontend/vendor/` della propria app.
-3. Dal frontend dell’app eseguire `npm install ./vendor/cycling-suite-ui-0.2.2.tgz --save-exact`.
+3. Dal frontend dell’app eseguire `npm install ./vendor/cycling-suite-ui-0.2.8.tgz --save-exact` (versione corrente; verificare `packages/ui/package.json`).
 4. Versionare tarball e package-lock.json nell’app. Il tarball contiene anche i sorgenti GPL, le dichiarazioni TypeScript, il logo e LICENSE.
 5. Registrare in un file di provenienza versione, SHA256 e commit/tag della repository comune. Il tag non va spostato dopo la consegna.
 
@@ -43,4 +43,10 @@ Il motore, gli archivi e la sincronizzazione non vengono spostati nella 0.1.0. Q
 
 Una modifica comune: correggere qui → test e catalogo → nuova versione → nuovo tarball → aggiornamento e verifica di ogni app. Le app possono restare temporaneamente su versioni diverse; tenere una matrice di quelle collaudate e non dichiarare automaticamente compatibili nuove versioni.
 
-Matrice locale corrente: Fuorigiri frontend 0.10.0 + UI 0.2.2 e Ammiraglia frontend 0.1.0 + UI 0.2.2. Ogni app conserva i propri test/build. La libreria non impone una pubblicazione sincronizzata degli installer.
+Matrice locale verificata il 21 ottobre 2026: Fuorigiri frontend 0.10.0 + UI **0.2.8**, Ammiraglia frontend 0.1.0 + UI **0.2.2**. Le aggiunte Android sono già nel pacchetto fissato da Fuorigiri; non attribuire la stessa adozione ad Ammiraglia. Ogni app conserva i propri test/build. La libreria non impone una pubblicazione sincronizzata degli installer.
+
+Per verificare l’allineamento corrente di Fuorigiri: `npm run sync:ui -- --app ../test-analysis --check`. Il controllo di Ammiraglia rispetto al common corrente segnala intenzionalmente la versione precedente finché non viene eseguita una sua consegna esplicita. Non è un difetto d’integrità del pacchetto 0.2.2.
+
+## Adozione Android
+
+Seguire [pratiche Android](ANDROID_BEST_PRACTICES.md) e [contratti UI](UI_ANDROID.md). La classe `android` è attivata dal prodotto dopo il riconoscimento del contenitore; restringere il browser non deve abilitare API native. Il common non imposta orientamento, persistenza della società, cattura di Back o motore grafico. Il catalogo `/?android` permette di verificare i componenti web separatamente dai gate APK/dispositivo.
