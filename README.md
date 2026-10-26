@@ -2,6 +2,8 @@
 
 Repository autonoma delle librerie condivise da **Fuorigiri Performance Lab** e **Ammiraglia**. Le applicazioni conservano repository, installer, database e versioni propri. Questa repository non contiene né avvia le due applicazioni.
 
+[Valutazione per il pilot Ammiraglia — 25 ottobre 2026](docs/VALUTAZIONE_PILOT_AMMIRAGLIA_2026-10-25.md): riuso dei progressi Fuorigiri, allineamenti e percorso di collaudo proposto.
+
 ## Stato UI 0.2.8
 
 Disponibile anche **`cycling-suite-core` 0.1.2**: portachiavi OS, trasporti cartella/WebDAV, lock di istanza e finestra desktop derivati da Fuorigiri e consumati dalle due app tramite wheel locale versionata. [Confini, consegna automatica e verifiche](docs/CORE_PYTHON.md). Non condivide dati o autorizzazioni e non rende interoperabili gli archivi.
@@ -10,7 +12,7 @@ Pacchetto condiviso: `@cycling-suite/ui`, React 19 + TypeScript, senza motori fi
 
 Il codice di origine è estratto da Fuorigiri, commit `e1f01bc`, e riallineato alla UI 0.10.0 del commit `fd569ca`, preservandone la licenza GPL-3.0-or-later. La UI 0.2.2 centralizza anche shell/navigazione responsive, controlli, liste/tabelle/riepiloghi, finestre native con testata fissa e protezione delle modifiche, input tempi e validazione. Client e backend restano nelle applicazioni. [Confini e decisioni](docs/ARCHITETTURA.md).
 
-La UI **0.2.8**, già consumata da Fuorigiri, comprende inoltre schede paginate con pagina controllabile, filtri richiudibili, azioni dei moduli, densità e controlli Android, caricamento accessibile, contenitori grafici, dialoghi fullscreen e pannelli flottanti. La variante `brand-end` permette nome/tagline a destra e icona dopo il testo. Le convenzioni recepiscono Fuorigiri TD-98–107; bridge, navigazione, gesti, orientamento e barre native restano applicativi. [Contratti ed esempi Android](docs/UI_ANDROID.md), [pratiche della suite](docs/ANDROID_BEST_PRACTICES.md).
+La UI **0.2.8**, consumata da entrambe le app dal 25 ottobre 2026, comprende inoltre schede paginate con pagina controllabile, filtri richiudibili, azioni dei moduli, densità e controlli Android, caricamento accessibile, contenitori grafici, dialoghi fullscreen e pannelli flottanti. La variante `brand-end` permette nome/tagline a destra e icona dopo il testo. Le convenzioni recepiscono Fuorigiri TD-98–107; bridge, navigazione, gesti, orientamento e barre native restano applicativi. Il consumo della libreria non introduce Android in Ammiraglia. [Contratti ed esempi Android](docs/UI_ANDROID.md), [pratiche della suite](docs/ANDROID_BEST_PRACTICES.md).
 
 ## Sviluppo
 

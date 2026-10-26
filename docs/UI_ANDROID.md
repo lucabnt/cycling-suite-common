@@ -39,7 +39,7 @@ Da common: `npm test`, `npm run build`, `npm run dev`, poi aprire `http://127.0.
 3. Aprire fullscreen: niente fascia titolo visibile, nome accessibile e X presenti. Il pannello è chiuso inizialmente; aprirlo per vedere i dati sintetici. Esc chiude la superficie. Il demo non implementa le priorità Back native o i modi Plotly.
 4. Verificare anche larghezze ridotte e landscape nel browser. Queste prove non certificano orientamento, barre di sistema, tastiera Android, TalkBack, APK o telefono ARM64.
 
-Allineamento di Fuorigiri: `npm run sync:ui -- --app ../test-analysis --check`. Ammiraglia mantiene 0.2.2: nessuna adozione Android implicita o aggiornamento del suo installer.
+Allineamento dei consumatori: `npm run sync:ui -- --app ../club-lab --app ../test-analysis --check`. Dal 25 ottobre 2026 anche Ammiraglia consuma 0.2.8: nessuna adozione Android implicita o aggiornamento dei suoi installer precedenti.
 
 ## Esiti del 21 ottobre 2026
 

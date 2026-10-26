@@ -6,7 +6,7 @@ Consolidamento aggiornato al **21 ottobre 2026**, confrontato con Fuorigiri `30d
 
 - Repository, dati, credenziali e build di ciascuna app restano separati. Il common distribuisce componenti versionati, non archivi o autenticazioni.
 - Usare Dialog, RecordCards, CollapsibleFilters, FormActions, TimeInput e token del pacchetto UI. Menu, voci, route, formule, payload e decisioni sui campi rimangono nel prodotto. Non duplicare CSS nelle app.
-- UI corrente **0.2.8**: variante brand-end; 0.2.7 aggiunge fullscreen e FloatingPanel; 0.2.6 isola cancel nei dialoghi annidati e permette i comandi sotto il grafico; 0.2.5 aggiunge ChartFrame/LoadingState e densità moderata; 0.2.4 introduce la paginazione controllabile; 0.2.3 introduce schede paginate e azioni moduli. Fuorigiri consuma 0.2.8, Ammiraglia resta su 0.2.2 finché non si esegue una consegna esplicita. Mai modificare i byte di una versione già consegnata.
+- UI corrente **0.2.8**: variante brand-end; 0.2.7 aggiunge fullscreen e FloatingPanel; 0.2.6 isola cancel nei dialoghi annidati e permette i comandi sotto il grafico; 0.2.5 aggiunge ChartFrame/LoadingState e densità moderata; 0.2.4 introduce la paginazione controllabile; 0.2.3 introduce schede paginate e azioni moduli. Dal 25 ottobre 2026 Fuorigiri e Ammiraglia consumano 0.2.8; la consegna ad Ammiraglia non qualifica un contenitore Android. Mai modificare i byte di una versione già consegnata.
 - Distinguere il contenitore Android dal browser stretto: il bridge nativo identifica le funzioni disponibili; la larghezza orienta il layout, non autorizzazioni o accesso ai dati.
 
 ## Navigazione e memoria della società

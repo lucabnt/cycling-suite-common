@@ -1,6 +1,6 @@
 # Riallineamento UI — 20 ottobre 2026
 
-Questo documento conserva il collaudo iniziale della UI 0.2.2. Per lo stato corrente Android del **21 ottobre 2026** consultare [contratti e convenzioni 0.2.8](UI_ANDROID.md) e [matrice dei consumatori](INTEGRAZIONE.md#coordinamento-dei-rilasci): Fuorigiri è su 0.2.8, Ammiraglia resta su 0.2.2.
+Questo documento conserva il collaudo iniziale della UI 0.2.2. Per i contratti Android consultare [convenzioni 0.2.8](UI_ANDROID.md) e per le consegne correnti la [matrice dei consumatori](INTEGRAZIONE.md#coordinamento-dei-rilasci): dal 25 ottobre 2026 entrambe le app consumano 0.2.8; l'adozione nativa Android resta specifica di Fuorigiri.
 
 ## Differenze trovate
 

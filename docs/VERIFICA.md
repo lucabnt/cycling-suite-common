@@ -1,5 +1,19 @@
 # Verifica iniziale 0.1.0
 
+## 26 ottobre 2026 — installer Windows Ammiraglia
+
+Prodotto anche il setup `club-lab/dist/candidates/ammiraglia-20261026-pilot-02-installer/Ammiraglia-0.1.0-windows-x64-setup.exe`, 180354103 byte, SHA-256 `a2f3819d11addc5867049aaaff275e4c4ab157482fb0b8f6b5b89563a14fd3cf`. Compilazione Inno dal bundle 02 congelato con verifica dei file prima/dopo, AppId e installazione per utente conservati. Consegna separata con sorgenti applicativi/packaging, manifest e checksum verificati; il portabile precedente rimane immutato. Nessuna modifica a runtime/UI/core, installazione sul profilo operativo, firma Authenticode o pubblicazione. Installazione/aggiornamento/disinstallazione su PC pulito restano nella checklist del prodotto; non ripetute suite applicative per il solo confezionamento del medesimo bundle.
+
+## 25 ottobre 2026 — allineamento Ammiraglia e preparazione pilot
+
+- UI 0.2.8 esistente consegnata ad Ammiraglia e riverificata in Fuorigiri tramite `sync:ui`, senza cambiare byte o versione della libreria. Core 0.1.2 invariato e installazioni verificate. Controlli `sync:ui --check` e `sync-core.py --check` finali riusciti su entrambe; matrice e documentazione Android aggiornate separando consumo e adozione nativa.
+- Common: 13 test UI/consegna e 3 test Python superati, build libreria/catalogo riuscita. Ammiraglia: 147 test Python finali e 6 frontend superati, build frontend e Windows riuscite. Fuorigiri: 252 Python superati/1 saltato e 34 frontend superati, build riuscita sul checkout locale in evoluzione, preservato. Warning noti: Starlette/httpx, fixture ZIP duplicata/cache pytest e dimensione Plotly; nessun nuovo audit dipendenze dichiarato.
+- Ammiraglia implementa nel proprio backend la preferenza locale della società con API autenticata, scrittura atomica, ID validati e nessun fallback automatico. Quattro nuove regressioni, inclusa assenza del file archivio con ID ancora presente: nessuna base vuota sostitutiva creata. Browser su corpus sintetici nuovi: scelta iniziale, scheda/elenco, anteprima report, editor con scarto e ripresa, riapertura della seconda società dopo arresto e cambio porta/token/origine. Verificato anche avvio/apertura esplicita con archivio temporaneamente non disponibile. Nove catture README ricatturate e ispezionate, più evidenze di riapertura e archivio assente.
+- Candidato portabile corrente `club-lab/dist/candidates/ammiraglia-20261025-pilot-02-windows-x64-portable.zip`, SHA-256 `ec1b7b383689835bc0ae8d8bdc771051565af4e34cb83534498a86ccb98f448c`. Include il controllo aggiuntivo sul file archivio. Smoke dell'EXE reale con PATH limitato a Windows e dati QA nuovi riuscito; frontend incluso identico byte per byte alla build verificata. Consegna con sorgenti locali congelati, log dei 147 test, manifest/provenienza, checksum verificati anche dentro lo ZIP e launcher su profili QA distinti. Conservato il precedente 01 (SHA-256 `631da8361a1bce776f0f069ba5eb822437a53d699bbd884d1fc6240c7765f40e`) e le RC precedenti; riconfezionamento sullo stesso candidato rifiutato. Nessun setup o pubblicazione.
+- Checklist e registri restano nei prodotti. Nessun dato reale aperto; PC pulito, due PC/provider reali, revisione indipendente, licenza complessiva e accettazione staff rimangono gate aperti. La disponibilità del candidato non autorizza automaticamente il pilot con dati personali.
+
+Le sezioni successive conservano i collaudi precedenti.
+
 18 ottobre 2026, Windows, Node 24/npm 11.
 
 - Quattro test Node passati: numeri/mancanti in entrambe le direzioni, zero/false, pulsanti che non inviano form, associazione dei label/escape e footer locale con nome applicativo variabile.

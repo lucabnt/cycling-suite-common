@@ -43,9 +43,9 @@ Il motore, gli archivi e la sincronizzazione non vengono spostati nella 0.1.0. Q
 
 Una modifica comune: correggere qui → test e catalogo → nuova versione → nuovo tarball → aggiornamento e verifica di ogni app. Le app possono restare temporaneamente su versioni diverse; tenere una matrice di quelle collaudate e non dichiarare automaticamente compatibili nuove versioni.
 
-Matrice locale verificata il 21 ottobre 2026: Fuorigiri frontend 0.10.0 + UI **0.2.8**, Ammiraglia frontend 0.1.0 + UI **0.2.2**. Le aggiunte Android sono già nel pacchetto fissato da Fuorigiri; non attribuire la stessa adozione ad Ammiraglia. Ogni app conserva i propri test/build. La libreria non impone una pubblicazione sincronizzata degli installer.
+Matrice locale aggiornata il 25 ottobre 2026: Fuorigiri frontend 0.10.0 + UI **0.2.8**, Ammiraglia frontend 0.1.0 + UI **0.2.8**. Consegna versionata eseguita per entrambe; test/build frontend riusciti (34 Fuorigiri, 6 Ammiraglia). Ammiraglia non adotta automaticamente layout mobili o un contenitore Android: la presenza del pacchetto non prova la stessa adozione di Fuorigiri. Ogni app conserva i propri test/build. La libreria non impone una pubblicazione sincronizzata degli installer.
 
-Per verificare l’allineamento corrente di Fuorigiri: `npm run sync:ui -- --app ../test-analysis --check`. Il controllo di Ammiraglia rispetto al common corrente segnala intenzionalmente la versione precedente finché non viene eseguita una sua consegna esplicita. Non è un difetto d’integrità del pacchetto 0.2.2.
+Per verificare l’allineamento corrente: `npm run sync:ui -- --app ../club-lab --app ../test-analysis --check`. Il precedente disallineamento di Ammiraglia alla 0.2.2 è superato dalla consegna del 25 ottobre; i candidati compilati precedentemente conservano la propria versione UI.
 
 ## Adozione Android
 
