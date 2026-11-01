@@ -1,12 +1,12 @@
 # Cycling Suite Common
 
-Repository autonoma delle librerie condivise da **Fuorigiri Performance Lab** e **Ammiraglia**. Le applicazioni conservano repository, installer, database e versioni propri. Questa repository non contiene né avvia le due applicazioni.
+Repository autonoma delle librerie condivise da **Fuorigiri Performance Lab**, **Ammiraglia** e **A Ruota Training Lab**. Le applicazioni conservano repository, installer, database e versioni propri. Questa repository non contiene né avvia le applicazioni.
 
 [Valutazione per il pilot Ammiraglia — 25 ottobre 2026](docs/VALUTAZIONE_PILOT_AMMIRAGLIA_2026-10-25.md): riuso dei progressi Fuorigiri, allineamenti e percorso di collaudo proposto.
 
 ## Stato UI 0.2.8
 
-Disponibile anche **`cycling-suite-core` 0.1.2**: portachiavi OS, trasporti cartella/WebDAV, lock di istanza e finestra desktop derivati da Fuorigiri e consumati dalle due app tramite wheel locale versionata. [Confini, consegna automatica e verifiche](docs/CORE_PYTHON.md). Non condivide dati o autorizzazioni e non rende interoperabili gli archivi.
+Disponibile anche **`cycling-suite-core` 0.1.2**: portachiavi OS, trasporti cartella/WebDAV, lock di istanza e finestra desktop derivati da Fuorigiri e consumati dalle tre app tramite wheel locale versionata. [Confini, consegna automatica e verifiche](docs/CORE_PYTHON.md). Non condivide dati o autorizzazioni e non rende interoperabili gli archivi.
 
 Pacchetto condiviso: `@cycling-suite/ui`, React 19 + TypeScript, senza motori fisiologici, rete o accesso al database. Include tema a variabili CSS, Field, DataTable, SortableTable e SuiteBranding con logo societario originale locale. Il catalogo interattivo mostra i due nomi applicativi, filtri, ordinamento, zero e mancanti, stato disabilitato e branding fisso.
 
@@ -38,8 +38,8 @@ Produce `artifacts/cycling-suite-ui-0.2.8.tgz`, comprensivo di JS, dichiarazioni
 Per derivare automaticamente il pacchetto nelle app, con test, installazione, lockfile e provenienza:
 
 ```sh
-npm run sync:ui -- --app ../club-lab --app ../test-analysis
-npm run sync:ui -- --app ../club-lab --app ../test-analysis --check
+npm run sync:ui -- --app ../club-lab --app ../performance-lab --app ../training-lab
+npm run sync:ui -- --app ../club-lab --app ../performance-lab --app ../training-lab --check
 ```
 
 I workspaces npm qui organizzano **soltanto le librerie e gli esempi comuni**; le applicazioni rimangono esterne. Non sono necessari submodule Git o collegamenti a un clone fratello in produzione.
@@ -51,3 +51,5 @@ Codice GPL-3.0-or-later, testo in LICENSE. Il marchio della società è distinto
 ## Android
 
 [Pratiche Android della suite](docs/ANDROID_BEST_PRACTICES.md): navigazione, persistenza società, elenchi, moduli, accessibilità, contenitore e gate di collaudo.
+
+Verifica del 2 novembre 2026: tutte e tre le app consumano UI 0.2.8 e core 0.1.2 coerenti con le sorgenti correnti. Fuorigiri si trova ora in `performance-lab` (già `test-analysis`). [Matrice e confini delle modifiche recenti](docs/INTEGRAZIONE.md#coordinamento-dei-rilasci).

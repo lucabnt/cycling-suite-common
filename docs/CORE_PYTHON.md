@@ -11,11 +11,11 @@ I trasporti condivisi non autorizzano eventi: firme, identità, canali, inviti, 
 
 ## Consegna riproducibile
 
-Da questa repository, con gli ambienti Python delle due app già disponibili:
+Da questa repository, con gli ambienti Python delle tre app già disponibili:
 
 ```powershell
-python scripts/sync-core.py --app ../club-lab --app ../test-analysis --install
-python scripts/sync-core.py --app ../club-lab --app ../test-analysis --check
+python scripts/sync-core.py --app ../club-lab --app ../performance-lab --app ../training-lab --install
+python scripts/sync-core.py --app ../club-lab --app ../performance-lab --app ../training-lab --check
 python -m unittest discover -s tests -p test_core.py -v
 ```
 
@@ -35,3 +35,7 @@ Non modificare il vendor a mano. Non usare import da repository sorelle o dipend
 ## Compatibilità preservata
 
 Fuorigiri conserva adattatori per i vecchi nomi di canale/cartella, i servizi del portachiavi `Fuorigiri.WebDAV` e `Fuorigiri.Cloud`, l'adattatore Android esistente e il nome del lock. Ammiraglia usa namespace separati. Nessun archivio reale migrato durante il collaudo.
+
+## Consumatori correnti — 2 novembre 2026
+
+Ammiraglia (`club-lab`), Fuorigiri (`performance-lab`, già `test-analysis`) e A Ruota (`training-lab`) consumano core 0.1.2 e UI 0.2.8. Il controllo common `--check` ha verificato per tutti e tre wheel, derivazione corrente e installazione Python autonoma. Nessuna nuova wheel necessaria per le recenti modifiche dei flussi applicativi.

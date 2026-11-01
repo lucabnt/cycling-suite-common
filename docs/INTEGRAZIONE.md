@@ -7,8 +7,8 @@
 Da questa repository, dopo `npm ci`:
 
 ```sh
-npm run sync:ui -- --app ../club-lab --app ../test-analysis
-npm run sync:ui -- --app ../club-lab --app ../test-analysis --check
+npm run sync:ui -- --app ../club-lab --app ../performance-lab --app ../training-lab
+npm run sync:ui -- --app ../club-lab --app ../performance-lab --app ../training-lab --check
 ```
 
 I percorsi sono argomenti espliciti, non dipendenze dell'app. Il comando esegue test, build e pack della UI; trasferisce il tarball nelle app selezionate; aggiorna dipendenza, installazione e lockfile; registra SHA256, commit e stato del checkout sorgente. Una consegna byte-identica conserva la provenienza originale. `--check` verifica gli artefatti consegnati e richiede che versione e impronta delle sorgenti corrispondano al common corrente. Un vecchio pacchetto coerente ma superato viene rifiutato. Le verifiche standalone delle app verificano invece il pacchetto fissato nel clone, senza un repository fratello. Non effettua commit, push o pubblicazione e non aggiorna automaticamente branch mobili.
@@ -45,8 +45,20 @@ Una modifica comune: correggere qui → test e catalogo → nuova versione → n
 
 Matrice locale aggiornata il 25 ottobre 2026: Fuorigiri frontend 0.10.0 + UI **0.2.8**, Ammiraglia frontend 0.1.0 + UI **0.2.8**. Consegna versionata eseguita per entrambe; test/build frontend riusciti (34 Fuorigiri, 6 Ammiraglia). Ammiraglia non adotta automaticamente layout mobili o un contenitore Android: la presenza del pacchetto non prova la stessa adozione di Fuorigiri. Ogni app conserva i propri test/build. La libreria non impone una pubblicazione sincronizzata degli installer.
 
-Per verificare l’allineamento corrente: `npm run sync:ui -- --app ../club-lab --app ../test-analysis --check`. Il precedente disallineamento di Ammiraglia alla 0.2.2 è superato dalla consegna del 25 ottobre; i candidati compilati precedentemente conservano la propria versione UI.
+Per verificare l’allineamento corrente: `npm run sync:ui -- --app ../club-lab --app ../performance-lab --app ../training-lab --check`. Il precedente disallineamento di Ammiraglia alla 0.2.2 è superato dalla consegna del 25 ottobre; i candidati compilati precedentemente conservano la propria versione UI.
 
 ## Adozione Android
 
 Seguire [pratiche Android](ANDROID_BEST_PRACTICES.md) e [contratti UI](UI_ANDROID.md). La classe `android` è attivata dal prodotto dopo il riconoscimento del contenitore; restringere il browser non deve abilitare API native. Il common non imposta orientamento, persistenza della società, cattura di Back o motore grafico. Il catalogo `/?android` permette di verificare i componenti web separatamente dai gate APK/dispositivo.
+
+## Allineamento del 2 novembre 2026
+
+| Consumatore | Repository corrente | UI | Core Python | Verifica |
+|---|---|---|---|---|
+| Ammiraglia | `club-lab` | 0.2.8 | 0.1.2 | UI sorgenti/tarball/lock e core/installazione verificati |
+| Fuorigiri Performance Lab | `performance-lab` (già `test-analysis`) | 0.2.8 | 0.1.2 | UI sorgenti/tarball/lock e core/installazione verificati |
+| A Ruota Training Lab | `training-lab` | 0.2.8 | 0.1.2 | UI sorgenti/tarball/lock e core/installazione verificati |
+
+I controlli `sync:ui --check` e `sync-core.py --check` sono riusciti sui tre checkout. Gli artefatti sono già identici alle sorgenti comuni: non serve una nuova versione o consegna. La provenienza originale degli artefatti resta conservata. Questi controlli non qualificano nuovamente installer, APK o dispositivi.
+
+Le ultime modifiche organizzano i comandi contestuali nella testata, seguiti da filtri ed elenco; modello/file e istruzioni estese si aprono su richiesta. Le appartenenze collettive si gestiscono in Gruppi, quelle individuali nel profilo. Questa convenzione vale per la suite, ma layout delle pagine, import CSV, mapping e autorizzazioni restano applicativi. Non richiede spostare i tracciati di prodotto nel common o aggiungere funzioni per uniformare nominalmente i menu.

@@ -26,4 +26,4 @@ Il warning Vite relativo al grande bundle Plotly di Fuorigiri resta presente. No
 
 ## Aggiornamenti successivi
 
-Modificare common, incrementare la versione del pacchetto e la dipendenza del catalogo, testare e compilare. Consegnare con `npm run sync:ui -- --app ../club-lab --app ../test-analysis`, verificare le due app, quindi eseguire lo stesso comando con `--check`. Import CSS in entrambe: theme, components, application, stili delle pagine. Le app rimangono compilabili senza cartelle sorelle e gli installer esistenti non cambiano da soli.
+Modificare common, incrementare la versione del pacchetto e la dipendenza del catalogo, testare e compilare. Consegnare con `npm run sync:ui -- --app ../club-lab --app ../performance-lab --app ../training-lab`, verificare le tre app, quindi eseguire lo stesso comando con `--check`. Import CSS nelle app: theme, components, application, stili delle pagine. Le app rimangono compilabili senza cartelle sorelle e gli installer esistenti non cambiano da soli.
