@@ -4,7 +4,7 @@ Repository autonoma delle librerie condivise da **Fuorigiri Performance Lab**, *
 
 [Valutazione per il pilot Ammiraglia — 25 ottobre 2026](docs/VALUTAZIONE_PILOT_AMMIRAGLIA_2026-10-25.md): riuso dei progressi Fuorigiri, allineamenti e percorso di collaudo proposto.
 
-## Stato UI 0.2.8
+## Stato UI 0.2.9
 
 Disponibile anche **`cycling-suite-core` 0.1.2**: portachiavi OS, trasporti cartella/WebDAV, lock di istanza e finestra desktop derivati da Fuorigiri e consumati dalle tre app tramite wheel locale versionata. [Confini, consegna automatica e verifiche](docs/CORE_PYTHON.md). Non condivide dati o autorizzazioni e non rende interoperabili gli archivi.
 
@@ -33,7 +33,7 @@ L’[anteprima Android](http://127.0.0.1:8782/?android) esercita paginazione, fi
 npm run pack:ui
 ```
 
-Produce `artifacts/cycling-suite-ui-0.2.8.tgz`, comprensivo di JS, dichiarazioni TypeScript, CSS, logo, sorgenti e licenza. Non pubblica su npm o GitHub. [Uso nelle app e bootstrap Ammiraglia](docs/INTEGRAZIONE.md).
+Produce `artifacts/cycling-suite-ui-0.2.9.tgz`, comprensivo di JS, dichiarazioni TypeScript, CSS, logo, sorgenti e licenza. Non pubblica su npm o GitHub. [Uso nelle app e bootstrap Ammiraglia](docs/INTEGRAZIONE.md).
 
 Per derivare automaticamente il pacchetto nelle app, con test, installazione, lockfile e provenienza:
 
@@ -53,3 +53,6 @@ Codice GPL-3.0-or-later, testo in LICENSE. Il marchio della società è distinto
 [Pratiche Android della suite](docs/ANDROID_BEST_PRACTICES.md): navigazione, persistenza società, elenchi, moduli, accessibilità, contenitore e gate di collaudo.
 
 Verifica del 2 novembre 2026: tutte e tre le app consumano UI 0.2.8 e core 0.1.2 coerenti con le sorgenti correnti. Fuorigiri si trova ora in `performance-lab` (già `test-analysis`). [Matrice e confini delle modifiche recenti](docs/INTEGRAZIONE.md#coordinamento-dei-rilasci).
+
+
+Aggiornamento 8 novembre 2026: UI 0.2.9 corregge il ripristino dello scorrimento alla chiusura simultanea di editor e conferma annidata. Il blocco dura fino all’ultimo dialogo, indipendentemente dall’ordine di smontaggio. Prove automatiche e riproduzione browser in Fuorigiri; nessuna nuova build nativa implicita.

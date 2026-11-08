@@ -1,4 +1,5 @@
 import {useEffect,useRef,useState,type ReactNode} from 'react';
+import {acquireBodyScrollLock} from './dialogScrollLock.js';
 
 export type DialogProps={title:string;children:ReactNode;onClose:()=>void;wide?:boolean;editor?:boolean;busy?:boolean;locale?:'it'|'en';fullscreen?:boolean};
 
@@ -11,11 +12,11 @@ export function Dialog({title,children,onClose,wide=true,editor=false,busy=false
  useEffect(()=>{
   const dialog=ref.current!;
   const previous=document.activeElement as HTMLElement|null;
-  const overflow=document.body.style.overflow;
-  document.body.style.overflow='hidden';dialog.showModal();
+  const releaseScroll=acquireBodyScrollLock(document.body);
+  try{dialog.showModal()}catch(error){releaseScroll();throw error}
   dialog.querySelector<HTMLButtonElement>('.suite-dialog-close')?.focus({preventScroll:true});
   dialog.scrollTop=0;
-  return()=>{dialog.close();document.body.style.overflow=overflow;if(previous?.isConnected)previous.focus({preventScroll:true})};
+  return()=>{dialog.close();releaseScroll();if(previous?.isConnected)previous.focus({preventScroll:true})};
  },[]);
  useEffect(()=>{
   const dialog=ref.current!;

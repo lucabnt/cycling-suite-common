@@ -1,4 +1,4 @@
-# @cycling-suite/ui 0.2.2
+# @cycling-suite/ui 0.2.9
 
 React 19, moduli ESM, TypeScript, GPL-3.0-or-later. Pacchetto iniziale di componenti comuni a Fuorigiri e Ammiraglia.
 
@@ -30,3 +30,8 @@ Importare `theme.css`, `components.css`, `application.css`, poi il CSS delle sol
 `Dialog` accetta `title`, `children`, `onClose`, `wide` (default true), `editor` (default false), `busy` e `locale` (`it`/`en`). Usa dialog nativo, sfondo opaco, focus iniziale/ripristinato, Esc, testata fissa e conferma di scarto negli editor. `busy` blocca Esc e chiusura; il salvataggio riuscito resta responsabilità dell'app. Non avvolgere altre modali native dentro il contenuto senza una necessità funzionale.
 
 `TimeInput` riceve `label`, `value` in secondi o null, `onChange` e `locale`. `clock`, `parseClock` e `validTimes` conservano zero, mancanti, frazioni e validazione mm:ss. Nessun contenuto scientifico o glossario di dominio è trasferito alla libreria.
+
+
+## Chiusura dei dialoghi annidati
+
+Dialog conserva il blocco dello scorrimento finché è aperta almeno una finestra. Alla chiusura dell’ultima ripristina lo stile precedente della pagina, anche se editor e conferma vengono smontati insieme o in ordine diverso. Il rilascio è idempotente per il replay degli effetti React; non aggiungere ripristini locali di `body.style.overflow` nelle app.

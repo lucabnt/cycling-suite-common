@@ -1,4 +1,10 @@
-# Riallineamento documentazione e catalogo Android — 21 ottobre 2026
+# Changelog
+
+## 8 novembre 2026 — UI 0.2.9
+
+- Dialog rilascia il blocco dello scorrimento solo alla chiusura dell’ultima finestra, indipendentemente dall’ordine di smontaggio di editor e conferme. Ripristino dello stile originale e rilascio idempotente; quattro regressioni coprono sei permutazioni, annullamento e replay.
+
+## Riallineamento documentazione e catalogo Android — 21 ottobre 2026
 
 Confronto con Fuorigiri `30d0f0a`, convenzioni TD-98–107. Sorgenti UI 0.2.8 già coerenti con il tarball consumato: nessuna nuova versione o modifica ai byte della libreria. Aggiornati README, architettura, guida Android e matrice dei consumatori; aggiunti contratti API, catalogo Android interattivo e regressioni per pagina controllata, superfici immersive e stati recuperabili. Esiti delle verifiche in [UI_ANDROID.md](docs/UI_ANDROID.md). Ammiraglia conserva UI 0.2.2; nessun installer o APK rigenerato.
 

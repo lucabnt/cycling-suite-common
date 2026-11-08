@@ -1,6 +1,6 @@
 # Cycling Suite Common — istruzioni
 
-Revisione sostanziale: 2 novembre 2026.
+Revisione sostanziale: 8 novembre 2026.
 
 Common è l'unica fonte di verità delle parti condivise di Fuorigiri (`performance-lab`, già `test-analysis`), Ammiraglia (`club-lab`) e A Ruota (`training-lab`). Le applicazioni mantengono repository, dati e build autonomi.
 
@@ -25,3 +25,5 @@ Common è l'unica fonte di verità delle parti condivise di Fuorigiri (`performa
 - Mantenere [contratti Android e matrice di adozione](docs/UI_ANDROID.md) e catalogo `/?android` coerenti con la guida canonica; verificare paginazione controllata, cancel annidato e superfici immersive. Il catalogo è una prova web con dati sintetici: non equivale a collaudo del bridge, APK, IME o telefono. Aggiornare separatamente la matrice dei consumatori in INTEGRAZIONE.md; una libreria disponibile non prova l’adozione nel prodotto.
 
 - Convenzione delle schede: comandi contestuali in testata, filtri ed elenco dopo; modello/file/istruzioni estese su richiesta. Appartenenze collettive in Gruppi, individuali nel profilo. Componenti e stili condivisi restano nel common; flussi, tracciati CSV e layout specifici restano nelle app. Non introdurre funzioni per una parità nominale.
+
+- UI 0.2.9: Dialog usa un blocco dello scorrimento condiviso per documento, rilasciato solo dopo l’ultimo dialogo indipendentemente dall’ordine di smontaggio. Preservare lo stile overflow iniziale e il rilascio idempotente; non aggirare il lifecycle con reset di overflow nei prodotti.

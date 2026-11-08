@@ -1,4 +1,4 @@
-# Decisioni architetturali — UI 0.2.8
+# Decisioni architetturali — UI 0.2.9
 
 ## ADR-001: repository esterna e applicazioni autonome
 
@@ -29,3 +29,8 @@ Condividere una libreria non autorizza a condividere SQLite o chiavi. Archivi lo
 UI 0.2.3–0.2.8 centralizza schede paginate, filtri richiudibili, azioni dei moduli, densità mobile, stati di caricamento e superfici grafiche/fullscreen. Gli eventi cancel non attraversano i dialoghi annidati. Il nome accessibile resta presente anche quando il titolo non occupa una fascia visiva; il pannello comandi è richiamabile e chiuso inizialmente. L’ordine del marchio è scelto dal prodotto con variante comune `brand-end`.
 
 Cronologia, ultima società, gesti e motore grafico, priorità del Back, orientamento e barre native sono applicativi. Non si introduce un bridge Android universale o una dipendenza da Plotly nel common. [Contratti](UI_ANDROID.md) e [pratiche Android](ANDROID_BEST_PRACTICES.md); dal 25 ottobre 2026 entrambe le app consumano 0.2.8, senza adozione nativa Android implicita per Ammiraglia. Le prove web del catalogo restano distinte dai gate nativi.
+
+
+## ADR — blocco condiviso dello scorrimento, 8 novembre 2026
+
+UI 0.2.9 conserva un contatore per documento e lo stile overflow iniziale. Ogni Dialog acquisisce un blocco e lo rilascia una sola volta; solo l’ultimo rilascio ripristina lo stile. Questo evita che il cleanup di una conferma annidata ripristini hidden dopo la chiusura del genitore. Vale anche per ordini di smontaggio diversi, replay degli effetti React e apertura fallita; le app non devono correggere lo stile globalmente.

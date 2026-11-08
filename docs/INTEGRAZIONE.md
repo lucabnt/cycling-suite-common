@@ -1,5 +1,13 @@
 # Integrare Fuorigiri o Ammiraglia
 
+## Consegna UI 0.2.9 — 8 novembre 2026
+
+Allineati Fuorigiri, Ammiraglia e A Ruota tramite sync:ui e --check al pacchetto 0.2.9, SHA-256 `b2d93ec844cbf4a399dca37d9bfc6e8a7990320d565886be2d0a262c304b72f4`. Correzione del blocco di scorrimento residuo alla chiusura simultanea di dialoghi annidati. Nessun core Python, dato o formato modificato; nessun nuovo installer/APK o pubblicazione.
+
+Verifiche: common 17 test JavaScript (quattro nuove regressioni sul lock, tutte le sei permutazioni di chiusura di tre finestre), 3 test core Python e build UI/catalogo. Test/build frontend dei consumatori: Fuorigiri 43, Ammiraglia 6, A Ruota 20, tutti passati; controlli standalone UI e allineamento sorgenti/tarball/lock riusciti. Browser compilato Fuorigiri: riprodotto overflow hidden senza finestre prima della correzione; con 0.2.9, annullamento lascia bloccato il genitore, eliminazione libera la pagina e la pagina successiva scorre. Prova web, non Android nativo né collaudo GUI completo delle altre due app.
+
+Le matrici datate precedenti rimangono fotografie storiche delle rispettive consegne.
+
 ## Artefatto versionato senza dipendenza dal percorso del collega
 
 ### Procedura automatica
@@ -21,7 +29,7 @@ Se il checkout common è modificato, `source_dirty=true` lo rende esplicito: pri
 
 1. Nella repository comune: `npm ci`, `npm test`, `npm run build`, `npm run pack:ui`.
 2. Copiare il file da artifacts nella cartella `frontend/vendor/` della propria app.
-3. Dal frontend dell’app eseguire `npm install ./vendor/cycling-suite-ui-0.2.8.tgz --save-exact` (versione corrente; verificare `packages/ui/package.json`).
+3. Dal frontend dell’app eseguire `npm install ./vendor/cycling-suite-ui-0.2.9.tgz --save-exact` (versione corrente; verificare `packages/ui/package.json`).
 4. Versionare tarball e package-lock.json nell’app. Il tarball contiene anche i sorgenti GPL, le dichiarazioni TypeScript, il logo e LICENSE.
 5. Registrare in un file di provenienza versione, SHA256 e commit/tag della repository comune. Il tag non va spostato dopo la consegna.
 
