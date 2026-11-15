@@ -49,6 +49,8 @@ def main():
         meta.write_text(json.dumps({'package':'cycling-suite-core','version':VERSION,'artifact':NAME,'sha256':digest,'source':'cycling-suite-common/packages/core','origin':'Fuorigiri transports, credentials and instance lock; GPL-3.0-or-later'},indent=2)+'\n',encoding='utf-8')
         (app/'requirements-common.txt').write_text('vendor/'+NAME+'\n',encoding='utf-8')
         shutil.copyfile(ROOT/'scripts/verify-core.py',app/'scripts/verify_core.py')
+        # Hash-checked lock companions (.hashes): never write hashes into requirements-common.txt.
+        shutil.copyfile(ROOT/'scripts/lock-hashes.py',app/'scripts/lock_hashes.py')
         project=app/'pyproject.toml';text=project.read_text(encoding='utf-8')
         if re.search(r'cycling-suite-core==[^"\s]+',text):text=re.sub(r'cycling-suite-core==[^"\s]+','cycling-suite-core=='+VERSION,text)
         else:text=text.replace('dependencies = [','dependencies = ["cycling-suite-core=='+VERSION+'", ',1)

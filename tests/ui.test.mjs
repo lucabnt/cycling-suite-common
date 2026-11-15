@@ -57,3 +57,12 @@ test('shared time control keeps empty, zero, fractional seconds and invalid inpu
  const empty=render(h(TimeInput,{label:'Durata',value:null,onChange(){}}));
  assert.doesNotMatch(empty,/value="0:00"/);
 });
+test('shared UI stays compatible with a Content-Security-Policy without unsafe-eval',async()=>{
+ // The apps serve script-src 'self' (Fuorigiri RT-18, A Ruota): no eval, no generated functions, no inline scripts.
+ const {readdir}=await import('node:fs/promises');const {sep}=await import('node:path');
+ const dist=new URL('../packages/ui/dist/',import.meta.url);
+ for(const name of (await readdir(dist,{recursive:true})).filter(n=>n.endsWith('.js'))){
+  const source=await readFile(new URL(name.split(sep).join('/'),dist),'utf8');
+  assert.doesNotMatch(source,/\beval\s*\(|new\s+Function\s*\(|<script/i,name);
+ }
+});

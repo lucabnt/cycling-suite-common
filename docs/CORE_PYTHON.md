@@ -30,6 +30,8 @@ python -m pip install -r requirements-common.txt
 python scripts/verify_core.py
 ```
 
+Installazione con hash (dal 15 novembre 2026): la consegna copia anche `scripts/lock_hashes.py`. Nell'app, `python scripts/lock_hashes.py --write` crea per ogni lockfile `requirements*.lock` o `requirements-lock*.txt` un file `.hashes` con gli SHA-256 di PyPI; `python scripts/lock_hashes.py` ne verifica offline la coerenza. Installare con `pip install --require-hashes -r <lock>.hashes`, poi `pip install --no-deps --no-index -r requirements-common.txt`. Non aggiungere hash a `requirements-common.txt`: `sync-core.py` lo riscrive e i lockfile senza hash smetterebbero di installarsi. I file consegnati non si riformattano nell'app: escluderli dal formatter.
+
 Non modificare il vendor a mano. Non usare import da repository sorelle o dipendenze a percorsi assoluti. Le dipendenze native del desktop e del portachiavi restano responsabilità di installazione delle app; il pacchetto comune usa import lazy per non imporre Qt ai server web.
 
 ## Compatibilità preservata

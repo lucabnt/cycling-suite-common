@@ -67,6 +67,8 @@ Seguire [pratiche Android](ANDROID_BEST_PRACTICES.md) e [contratti UI](UI_ANDROI
 | Fuorigiri Performance Lab | `performance-lab` (già `test-analysis`) | 0.2.8 | 0.1.2 | UI sorgenti/tarball/lock e core/installazione verificati |
 | A Ruota Training Lab | `training-lab` | 0.2.8 | 0.1.2 | UI sorgenti/tarball/lock e core/installazione verificati |
 
+Lockfile con hash (`lock_hashes.py`, 15 novembre 2026): adottati in Fuorigiri (`requirements-lock-windows.hashes`, workflow con `--require-hashes`). Ammiraglia e A Ruota non ancora: alla prossima consegna del core ricevono lo script, poi servono `lock_hashes.py --write` e l'aggiornamento dei loro workflow.
+
 I controlli `sync:ui --check` e `sync-core.py --check` sono riusciti sui tre checkout. Gli artefatti sono già identici alle sorgenti comuni: non serve una nuova versione o consegna. La provenienza originale degli artefatti resta conservata. Questi controlli non qualificano nuovamente installer, APK o dispositivi.
 
 Le ultime modifiche organizzano i comandi contestuali nella testata, seguiti da filtri ed elenco; modello/file e istruzioni estese si aprono su richiesta. Le appartenenze collettive si gestiscono in Gruppi, quelle individuali nel profilo. Questa convenzione vale per la suite, ma layout delle pagine, import CSV, mapping e autorizzazioni restano applicativi. Non richiede spostare i tracciati di prodotto nel common o aggiungere funzioni per uniformare nominalmente i menu.

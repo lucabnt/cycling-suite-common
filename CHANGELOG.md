@@ -1,5 +1,12 @@
 # Changelog
 
+## 15 novembre 2026 — strumenti di consegna (revisione tecnica Fuorigiri, RT-18/RT-19)
+
+- Nuovo `scripts/lock-hashes.py`, consegnato da `sync-core.py` alle app come `scripts/lock_hashes.py` accanto a `verify_core.py`. Per ogni lockfile `requirements*.lock` o `requirements-lock*.txt` genera da PyPI un file `.hashes` per `pip install --require-hashes` e ne controlla offline la coerenza. Esclude `requirements-common.txt`: la wheel comune si installa con `--no-deps --no-index` ed è già verificata da `verify_core.py`. `sync-core.py` continua a non scrivere hash nei requisiti.
+- Workflow `verify.yml` con azioni fissate per SHA del commit e versione in commento.
+- Nuovo test: i moduli JavaScript della UI comune non usano `eval`, `new Function` né script in linea, così restano compatibili con una Content-Security-Policy senza `unsafe-eval`.
+- Core 0.1.2 e UI 0.2.9 invariati: nessuna nuova versione. Consegnato soltanto a Fuorigiri; Ammiraglia e A Ruota non aggiornati.
+
 ## 8 novembre 2026 — UI 0.2.9
 
 - Dialog rilascia il blocco dello scorrimento solo alla chiusura dell’ultima finestra, indipendentemente dall’ordine di smontaggio di editor e conferme. Ripristino dello stile originale e rilascio idempotente; quattro regressioni coprono sei permutazioni, annullamento e replay.

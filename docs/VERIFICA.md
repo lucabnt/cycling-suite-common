@@ -1,5 +1,11 @@
 # Verifica iniziale 0.1.0
 
+## 15 novembre 2026 — hash dei lockfile e compatibilità CSP
+
+- `npm test`: 18 test UI/consegna superati, compreso il nuovo controllo CSP sui moduli di `packages/ui/dist`; 4 test Python del core superati, compreso il nuovo test di `lock-hashes.py` (lockfile con `-r` tra lockfile, `requirements-common.txt` escluso, marcatore di piattaforma conservato, versione diversa segnalata, file `.txt` non di lock ignorato). `npm run build` riuscito.
+- Consegna a Fuorigiri: `sync-core.py --app ../performance-lab --install` e `--check` riusciti; wheel 0.1.2 identica. In Fuorigiri `lock_hashes.py --write` ha prodotto gli hash di 59 pacchetti e una installazione simulata con `--require-hashes` ha risolto tutti i pacchetti.
+- Non eseguiti: consegna e prove in Ammiraglia e A Ruota, workflow su GitHub.
+
 ## 26 ottobre 2026 — installer Windows Ammiraglia
 
 Prodotto anche il setup `club-lab/dist/candidates/ammiraglia-20261026-pilot-02-installer/Ammiraglia-0.1.0-windows-x64-setup.exe`, 180354103 byte, SHA-256 `a2f3819d11addc5867049aaaff275e4c4ab157482fb0b8f6b5b89563a14fd3cf`. Compilazione Inno dal bundle 02 congelato con verifica dei file prima/dopo, AppId e installazione per utente conservati. Consegna separata con sorgenti applicativi/packaging, manifest e checksum verificati; il portabile precedente rimane immutato. Nessuna modifica a runtime/UI/core, installazione sul profilo operativo, firma Authenticode o pubblicazione. Installazione/aggiornamento/disinstallazione su PC pulito restano nella checklist del prodotto; non ripetute suite applicative per il solo confezionamento del medesimo bundle.

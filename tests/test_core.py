@@ -45,4 +45,22 @@ class CoreTests(unittest.TestCase):
         for value in ('http://example.invalid/','https://user:pass@example.invalid/','https://example.invalid/../secrets'):
             with self.assertRaises(ValueError):validate_url(value)
 
+    def test_lock_hash_companions_follow_lockfiles_without_common_wheel(self):
+        spec=importlib.util.spec_from_file_location('lock_hashes',ROOT/'scripts/lock-hashes.py');module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+        with TemporaryDirectory() as temporary:
+            root=Path(temporary)
+            (root/'requirements-common.txt').write_text('vendor/core.whl\n',encoding='utf-8')
+            (root/'requirements-dev.lock').write_text('Foo_Bar==1.0\npywin32-ctypes==0.2.3; sys_platform == "win32"\n-r requirements-common.txt\n',encoding='utf-8')
+            (root/'requirements-desktop.lock').write_text('-r requirements-dev.lock\nqux==2\n',encoding='utf-8')
+            (root/'requirements-f0.txt').write_text('unpinned\n',encoding='utf-8')
+            self.assertEqual(len(module.check(root)),2)
+            module.write(root,digests=lambda name,version:['a'*64,'b'*64])
+            self.assertEqual(module.check(root),[])
+            dev=(root/'requirements-dev.hashes').read_text(encoding='utf-8')
+            self.assertNotIn('-r requirements-common.txt',dev.splitlines());self.assertIn('pywin32-ctypes==0.2.3 ; sys_platform == "win32" \\',dev)
+            self.assertTrue((root/'requirements-desktop.hashes').read_text(encoding='utf-8').splitlines()[3]=='-r requirements-dev.hashes')
+            self.assertFalse((root/'requirements-f0.hashes').exists())
+            (root/'requirements-desktop.lock').write_text('-r requirements-dev.lock\nqux==3\n',encoding='utf-8')
+            self.assertEqual(module.check(root),['requirements-desktop.hashes: qux 3 nel lock, 2 negli hash.'])
+
 if __name__=='__main__':unittest.main()
