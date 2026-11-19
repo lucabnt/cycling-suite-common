@@ -1,0 +1,36 @@
+{
+ "value": {
+  "b": [
+   1,
+   2.5,
+   null,
+   true
+  ],
+  "a": "àè€ \"x\"",
+  "z": {
+   "y": -3
+  }
+ },
+ "canonical": "{\"a\":\"àè€ \\\"x\\\"\",\"b\":[1,2.5,null,true],\"z\":{\"y\":-3}}",
+ "ed25519_private": "AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8=",
+ "public": "A6EHv/POEL4dcN0Y50vAmWfk1jCbpQ1fHdyGZBJVMbg=",
+ "envelope": {
+  "value": {
+   "b": [
+    1,
+    2.5,
+    null,
+    true
+   ],
+   "a": "àè€ \"x\"",
+   "z": {
+    "y": -3
+   }
+  },
+  "signature": "xWpxfNsNAl8opycqSybvLS800fKNad0t6xiDGMQzWh6IKKqmBXeg1BzpttL/0psKzW9tFWiEex/HwaUnkYNiCw=="
+ },
+ "hashed": "38bbcefa3cbcddd7a08d13de73e193ee39bd13bc22bf4c292fabd3daca7f9b9d",
+ "vault_seal": "QU1NQkEwMDIAAgAAAAAACAAAAAEXHycvNz9HT1dfZ293f4ePh4+Xn6evt7/Hz9ffhoaXd94A5l1fylC8BIpVHbtwxo98sZNVzK8bIlXO7VQrN0/4beUtoivjAMaG4D0tV1mX7XXE+sM4Y/8iRNoWlesoX0ccAuYB",
+ "vault_encrypt": "QU1NREIwMDIAAAAAAAAAAAAAAAAAAAAAHycvNz9HT1dfZ293jGoq0dODPbRG1XuSddGesv8sWRBYkV5y4nOabWzh5b1+hQ4JIVaqOEYlKUevLKGS4uf0mCcENUgawC0mK0M7p7X/xFmOL1kI",
+ "renewal_key": "QeNMPzWq1FeL5+Vb/juws9saWJ7gScOnjP06OUQ0aMc="
+}

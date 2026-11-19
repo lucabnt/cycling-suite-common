@@ -16,3 +16,10 @@ Product names, data, authorities, vault service names and compatibility adapters
 remain the responsibility of each application. This package does not grant rights
 to society marks or establish trust between archives.
 
+Core 0.2.0 (19 November 2026) adds primitives derived from Fuorigiri and
+Ammiraglia (`club-lab`): canonical JSON, Ed25519 helpers, scrypt/Fernet and
+AES-GCM envelopes (`crypto`), atomic writes (`files`), CSV formula
+neutralization (`csv_safety`), the fixed suite attribution (`branding`), job
+runner and automatic exchange schedule (`jobs`) and exchange invariants
+(`exchange`). Formats, magic bytes, KDF parameters, signature namespaces,
+access models and sync engines remain in each application.

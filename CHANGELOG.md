@@ -1,5 +1,12 @@
 # Changelog
 
+## 19 novembre 2026 — core 0.2.0
+
+- Nuovi moduli `canonical`, `crypto`, `files`, `csv_safety`, `branding`, `jobs`, `exchange`, derivati da Fuorigiri e Ammiraglia. Formati e namespace restano nelle app.
+- Vettori `tests/vectors/crypto-*.json` prodotti dalle implementazioni delle app prima dell'estrazione; `test_core_crypto.py` ne prova la riproduzione byte per byte (richiede `cryptography`, altrimenti saltato).
+- Nuovi test `test_core_utils.py`, `test_core_jobs.py`, `test_core_exchange.py`; `npm run test:core` esegue tutti i `test_core*.py`.
+- Metadati della wheel e provenienza indicano la doppia derivazione. Consegna a Fuorigiri e Ammiraglia; A Ruota resta su 0.1.2.
+
 ## 15 novembre 2026 — strumenti di consegna (revisione tecnica Fuorigiri, RT-18/RT-19)
 
 - Nuovo `scripts/lock-hashes.py`, consegnato da `sync-core.py` alle app come `scripts/lock_hashes.py` accanto a `verify_core.py`. Per ogni lockfile `requirements*.lock` o `requirements-lock*.txt` genera da PyPI un file `.hashes` per `pip install --require-hashes` e ne controlla offline la coerenza. Esclude `requirements-common.txt`: la wheel comune si installa con `--no-deps --no-index` ed è già verificata da `verify_core.py`. `sync-core.py` continua a non scrivere hash nei requisiti.

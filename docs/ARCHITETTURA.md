@@ -22,6 +22,8 @@ Pubblicazione su un registro rimandata fino alla scelta dell’organizzazione e 
 
 Il runtime `cycling-suite-core` è disponibile in wheel versionata per portachiavi OS, trasporti immutabili, lock di istanza e finestra Qt: [confini e consegna](CORE_PYTHON.md). API/bridge Android, schemi di prodotto, archivio/revisioni/accessi/backup/sync, motori dei test e pianificazione allenamenti restano nelle app. Le directory client/contracts non vengono presentate come librerie funzionanti.
 
+Aggiornamento del 19 novembre 2026 (core 0.2.0, richiesta esplicita): il core contiene anche primitive crittografiche, scritture atomiche, CSV sicuro, attribuzione fissa, job di sync e invarianti di scambio usati da Fuorigiri e Ammiraglia. I formati restano byte per byte quelli delle app, verificati con vettori prodotti dalle implementazioni precedenti. Modelli di accesso, catene/revoche, motori di sync, applicazione degli eventi e backup restano nelle app; un motore unico richiederebbe un nuovo formato e una decisione separata.
+
 Condividere una libreria non autorizza a condividere SQLite o chiavi. Archivi locali separati, nessuna migrazione automatica o connessione fra app. Prima dello scambio servono identità stabili, compatibilità degli eventi e record sconosciuti, provenienza, autorizzazioni, regole di conflitto e test incrociati delle versioni. Le liste di tipi ammesse da Fuorigiri oggi non contemplano i record di allenamento.
 
 ## ADR-005: convenzioni Android e superfici immersive

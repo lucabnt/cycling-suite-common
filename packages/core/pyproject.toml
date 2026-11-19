@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "cycling-suite-core"
-version = "0.1.2"
-description = "Shared runtime primitives derived from Fuorigiri"
+version = "0.2.0"
+description = "Shared runtime primitives derived from Fuorigiri and Ammiraglia"
 requires-python = ">=3.12"
 license = "GPL-3.0-or-later"
 

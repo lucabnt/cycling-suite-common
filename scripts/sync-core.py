@@ -20,7 +20,7 @@ NAME=f'cycling_suite_core-{VERSION}-py3-none-any.whl'
 def contents():
     files={str(p.relative_to(SOURCE/'src')).replace('\\','/'):p.read_bytes() for p in (SOURCE/'src').rglob('*.py')}
     dist=f'cycling_suite_core-{VERSION}.dist-info/'
-    files.update({dist+'METADATA':f'Metadata-Version: 2.1\nName: cycling-suite-core\nVersion: {VERSION}\nRequires-Python: >=3.12\nLicense: GPL-3.0-or-later\n\nShared runtime primitives derived from Fuorigiri.\n'.encode(),dist+'WHEEL':b'Wheel-Version: 1.0\nGenerator: cycling-suite-common\nRoot-Is-Purelib: true\nTag: py3-none-any\n',dist+'LICENSE':(SOURCE/'LICENSE').read_bytes(),dist+'NOTICE.md':(SOURCE/'NOTICE.md').read_bytes()})
+    files.update({dist+'METADATA':f'Metadata-Version: 2.1\nName: cycling-suite-core\nVersion: {VERSION}\nRequires-Python: >=3.12\nLicense: GPL-3.0-or-later\n\nShared runtime primitives derived from Fuorigiri and Ammiraglia.\n'.encode(),dist+'WHEEL':b'Wheel-Version: 1.0\nGenerator: cycling-suite-common\nRoot-Is-Purelib: true\nTag: py3-none-any\n',dist+'LICENSE':(SOURCE/'LICENSE').read_bytes(),dist+'NOTICE.md':(SOURCE/'NOTICE.md').read_bytes()})
     record=io.StringIO(newline='');writer=csv.writer(record,lineterminator='\n')
     for name,raw in sorted(files.items()):writer.writerow([name,'sha256='+base64.urlsafe_b64encode(hashlib.sha256(raw).digest()).decode().rstrip('='),len(raw)])
     writer.writerow([dist+'RECORD','','']);files[dist+'RECORD']=record.getvalue().encode()
@@ -46,7 +46,7 @@ def main():
             subprocess.run([str(interpreter),'scripts/verify_core.py'],cwd=app,check=True)
             continue
         vendor.mkdir(exist_ok=True);(vendor/NAME).write_bytes(raw)
-        meta.write_text(json.dumps({'package':'cycling-suite-core','version':VERSION,'artifact':NAME,'sha256':digest,'source':'cycling-suite-common/packages/core','origin':'Fuorigiri transports, credentials and instance lock; GPL-3.0-or-later'},indent=2)+'\n',encoding='utf-8')
+        meta.write_text(json.dumps({'package':'cycling-suite-core','version':VERSION,'artifact':NAME,'sha256':digest,'source':'cycling-suite-common/packages/core','origin':'Fuorigiri and Ammiraglia runtime primitives (transports, credentials, instance lock, crypto, files, CSV, jobs, exchange invariants); GPL-3.0-or-later'},indent=2)+'\n',encoding='utf-8')
         (app/'requirements-common.txt').write_text('vendor/'+NAME+'\n',encoding='utf-8')
         shutil.copyfile(ROOT/'scripts/verify-core.py',app/'scripts/verify_core.py')
         # Hash-checked lock companions (.hashes): never write hashes into requirements-common.txt.

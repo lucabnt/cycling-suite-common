@@ -1,4 +1,34 @@
-# Runtime Python condiviso — 20 ottobre 2026
+# Runtime Python condiviso
+
+## Core 0.2.0 — 19 novembre 2026
+
+Su richiesta esplicita, il core riceve le parti comuni di Fuorigiri e Ammiraglia individuate nel confronto del 19 novembre. Sono primitive e invarianti; **formati, magic, parametri KDF, namespace delle firme, modelli di accesso e motori di sync restano nelle app**.
+
+| Modulo | Contenuto | Derivato da | Adottato da |
+|---|---|---|---|
+| `canonical` | JSON canonico e SHA-256 | entrambe (`store.encoded`) | tramite `crypto` e `files` |
+| `crypto` | base64, Ed25519 a chiavi raw, seme HMAC con separazione di dominio, scrypt con limiti per parametri non fidati, involucro JSON scrypt+Fernet, frame AES-GCM `prefisso‖nonce‖cifrato` con intestazione come AAD | Fuorigiri `workspaces` (inviti/recupero), Ammiraglia `collaboration`/`vault` | Fuorigiri `workspaces`; Ammiraglia `collaboration`, `vault` |
+| `files` | scrittura atomica con fsync e permessi 0600; JSON canonico | Ammiraglia `vault.atomic`, Fuorigiri `write_json` | entrambe |
+| `csv_safety` | neutralizzazione formule reversibile, numeri intatti, spazi/a capo iniziali | Fuorigiri RT-15 + Ammiraglia `safe_cell` | Fuorigiri `csv_safety`; Ammiraglia `exports` |
+| `branding` | attribuzione fissa della suite | entrambe | `branding`/`pdf_common` |
+| `jobs` | `JobRegistry` (un job per archivio, stato persistito, «interrotto» dopo riavvio, errore senza dettagli), `ObservedTransport`, `AutoSchedule` e `backoff` | Fuorigiri `sync_jobs`, Ammiraglia `auto_exchange` | Fuorigiri `sync_jobs`; Ammiraglia scambio automatico e calendario |
+| `exchange` | versioni immutabili dei controlli firmati (fork = errore), lettura incrementale per ID, pubblicazione immutabile con collisione accettata solo se l'app autentica lo stesso contenuto | Fuorigiri `sync`/`sync_v2`, Ammiraglia `collaboration` | Fuorigiri v1/v2; Ammiraglia politiche ed eventi |
+
+`cryptography` non è dichiarata dalla wheel: è già dipendenza di ogni consumatore ed è importata solo da `crypto`. Gli altri moduli non la richiedono.
+
+**Compatibilità byte per byte.** `tests/vectors/crypto-*.json` è stato prodotto dalle implementazioni delle app *prima* dell'estrazione, con casualità e orologio deterministici. `tests/test_core_crypto.py` verifica che il core riproduca gli stessi byte (JSON canonico, firme, involucro Fernet n=2¹⁷, lettura dell'involucro storico n=2¹⁴, frame AES-GCM di backup e database, seme di rinnovo). Il test richiede `cryptography`: con l'interprete globale viene saltato; eseguirlo con la venv di un consumatore:
+
+```powershell
+..\performance-lab\.venv\Scripts\python.exe -m unittest tests.test_core_crypto -v
+```
+
+**Comportamenti cambiati, dichiarati.** CSV: Fuorigiri ora neutralizza anche testo con spazi o a capo prima della formula (la lettura resta reversibile); Ammiraglia non antepone più l'apice ai testi numerici come `-12`. File: le scritture JSON di Fuorigiri passano per fsync. Sync Fuorigiri v1: la pubblicazione concorrente dello stesso evento da parte di due amministratori non fa più fallire lo scambio. Ordine di lettura degli eventi Ammiraglia per nome (l'ingest resta transazionale).
+
+**Non derivato.** Catena delle politiche e rinnovi (solo Ammiraglia), revoche monotone e congelamento degli eventi accettati (solo Fuorigiri), applicazione dei candidati e DAG, pagine v2, backup a blocchi (proposta separata nella [revisione del 16 novembre](REVISIONE_SUITE_2026-11-16.md)). Un motore di sync unico richiederebbe un nuovo formato di scambio e la migrazione dei dispositivi: decisione distinta, non presa.
+
+A Ruota (`training-lab`, sospesa) resta su core 0.1.2: nessuna consegna.
+
+## Core 0.1.2 — 20 ottobre 2026
 
 `cycling-suite-core` 0.1.2 affianca la UI 0.2.2. Estratti dai sorgenti Fuorigiri 0.10.0:
 

@@ -1,0 +1,19 @@
+{
+ "value": {
+  "b": [
+   1,
+   2.5,
+   null,
+   true
+  ],
+  "a": "àè€ \"x\"",
+  "z": {
+   "y": -3
+  }
+ },
+ "canonical": "{\"a\":\"àè€ \\\"x\\\"\",\"b\":[1,2.5,null,true],\"z\":{\"y\":-3}}",
+ "ed25519_private": "AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8=",
+ "ed25519_signature": "xWpxfNsNAl8opycqSybvLS800fKNad0t6xiDGMQzWh6IKKqmBXeg1BzpttL/0psKzW9tFWiEex/HwaUnkYNiCw==",
+ "seal_json": "{\"encrypted\":\"gAAAAABq_YbAy9Pb4-vz-wMLExsjKzM7Qzj17ZvPNv1pFXh_R8df28BKyXcif1pQ9iKroVsZzSH1uoH8Go6s8O6gGsUJhPleU9Og5tq2daSB7CQknnlhAt69M-NH6eWYxmFTnhEadIVvAUwBA9hNpvKbT6IC2qTliQ==\",\"kdf\":{\"n\":131072,\"name\":\"scrypt\",\"p\":1,\"r\":8},\"salt\":\"W2Nrc3uDi5Obo6uzu8PL0w==\"}",
+ "seal_json_legacy": "{\"encrypted\":\"gAAAAABq_YbABQ0VHSUtNT1FTVVdZW11fe2RDWHQWZ09ULYpKc9f8D5L-2hGmN3inbtqges5gqKg3AA2IS0iBxF6NOeGjg0aA78FhQf5ouxpo7M07OtQOQT-4OikxMLO2tZonhlw-MWOWGOJb-hzDyldDx2kucun0w==\",\"salt\":\"AAECAwQFBgcICQoLDA0ODw==\"}"
+}

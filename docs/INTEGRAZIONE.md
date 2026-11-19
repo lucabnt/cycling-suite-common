@@ -1,5 +1,9 @@
 # Integrare Fuorigiri, Ammiraglia e A Ruota
 
+## Core 0.2.0 — 19 novembre 2026
+
+Consegnato a Fuorigiri e Ammiraglia con `sync-core.py --install` e `--check`; A Ruota resta su 0.1.2 (app sospesa). `verify-core.py` confronta ora tutti i moduli della wheel con quelli installati. Contenuto e confini in [CORE_PYTHON.md](CORE_PYTHON.md); esiti dei test nelle verifiche delle due app.
+
 ## Stato verificato il 16 novembre 2026
 
 | App | UI | Core Python | Installazione con hash nei workflow |

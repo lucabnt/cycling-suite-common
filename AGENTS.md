@@ -1,10 +1,10 @@
 # Cycling Suite Common — istruzioni
 
-Revisione sostanziale: 15 novembre 2026.
+Revisione sostanziale: 19 novembre 2026.
 
 Common è l'unica fonte di verità delle parti condivise di Fuorigiri (`performance-lab`, già `test-analysis`), Ammiraglia (`club-lab`) e A Ruota (`training-lab`). Le applicazioni mantengono repository, dati e build autonomi.
 
-- Il runtime Python `cycling-suite-core` contiene portachiavi OS, trasporti immutabili, lock di istanza e finestra Qt derivati da Fuorigiri. Dati, firme/accessi, formati di sync, lifecycle server e compatibilità prodotto restano nelle app. [Consegna e confini](docs/CORE_PYTHON.md).
+- Il runtime Python `cycling-suite-core` (0.2.0) contiene portachiavi OS, trasporti immutabili, lock di istanza, finestra Qt, primitive crittografiche (`crypto`), scritture atomiche, CSV sicuro, attribuzione fissa, job di sync (`jobs`) e invarianti di scambio (`exchange`), derivati da Fuorigiri e Ammiraglia. Dati, formati di firma/invito/backup/sync, modelli di accesso, motori di sync, lifecycle server e compatibilità prodotto restano nelle app. Ogni modifica a `crypto` deve superare i vettori byte per byte in `tests/vectors` con una venv che abbia `cryptography`; non rigenerare i vettori dal core. [Consegna e confini](docs/CORE_PYTHON.md).
 - Per il core incrementare insieme `packages/core/pyproject.toml` e `src/cycling_suite/__init__.py` prima di cambiare una wheel consegnata. Usare `python scripts/sync-core.py --app ../club-lab --app ../performance-lab --app ../training-lab --install`, poi `--check`; niente modifiche manuali al vendor. Verificare i consumatori e la loro installazione autonoma, preservando servizi vault, canali e lock esistenti. `npm test` include i test Python del core.
 
 - La consegna del core copia anche `scripts/lock_hashes.py` (hash dei lockfile in file `.hashes`, wheel comune installata a parte con `--no-deps --no-index`). Non scrivere hash in `requirements-common.txt`. La UI comune deve restare compatibile con una CSP `script-src 'self'` senza `unsafe-eval`: niente `eval`, `new Function` o script in linea (test in `ui.test.mjs`); gli stili in linea sono ammessi. Workflow con azioni fissate per SHA.
