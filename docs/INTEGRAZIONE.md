@@ -1,4 +1,14 @@
-# Integrare Fuorigiri o Ammiraglia
+# Integrare Fuorigiri, Ammiraglia e A Ruota
+
+## Stato verificato il 16 novembre 2026
+
+| App | UI | Core Python | Installazione con hash nei workflow |
+|---|---|---|---|
+| Fuorigiri | 0.2.9 | 0.1.2 | `verify.yml` e `desktop-build.yml` |
+| Ammiraglia | 0.2.9 | 0.1.2 | `verify.yml` |
+| A Ruota | 0.2.9 | 0.1.2 | `f0.yml` e `f1.yml` |
+
+Superati `sync:ui --check` e `sync-core.py --check` sui tre checkout. Le tre copie di `scripts/lock_hashes.py` hanno lo stesso SHA-256 della sorgente comune. [Valutazione delle prossime derivazioni](REVISIONE_SUITE_2026-11-16.md).
 
 ## Consegna UI 0.2.9 — 8 novembre 2026
 
@@ -67,7 +77,7 @@ Seguire [pratiche Android](ANDROID_BEST_PRACTICES.md) e [contratti UI](UI_ANDROI
 | Fuorigiri Performance Lab | `performance-lab` (già `test-analysis`) | 0.2.8 | 0.1.2 | UI sorgenti/tarball/lock e core/installazione verificati |
 | A Ruota Training Lab | `training-lab` | 0.2.8 | 0.1.2 | UI sorgenti/tarball/lock e core/installazione verificati |
 
-Lockfile con hash (`lock_hashes.py`, 15 novembre 2026): adottati in Fuorigiri (`requirements-lock-windows.hashes`, workflow con `--require-hashes`). Ammiraglia e A Ruota non ancora: alla prossima consegna del core ricevono lo script, poi servono `lock_hashes.py --write` e l'aggiornamento dei loro workflow.
+Il 15 novembre Fuorigiri usava già `requirements-lock-windows.hashes` nei workflow con `--require-hashes`. La matrice del 16 novembre registra la successiva verifica delle tre app.
 
 I controlli `sync:ui --check` e `sync-core.py --check` sono riusciti sui tre checkout. Gli artefatti sono già identici alle sorgenti comuni: non serve una nuova versione o consegna. La provenienza originale degli artefatti resta conservata. Questi controlli non qualificano nuovamente installer, APK o dispositivi.
 
