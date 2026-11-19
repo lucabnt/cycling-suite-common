@@ -14,6 +14,8 @@ In entrambi i moduli `backup_crypto.py`, `encrypt_file` apre la sorgente prima d
 
 Priorità immediata per entrambi i prodotti: limitare la pulizia al file effettivamente creato dalla chiamata. Coprire con regressioni la sorgente assente con destinazione preesistente, la collisione in apertura e l'errore di scrittura dopo la creazione.
 
+**Esito, 19 novembre 2026.** Corretto in Fuorigiri e A Ruota: destinazione aperta in modo esclusivo dopo la sorgente, pulizia limitata al file creato. Regressioni per i tre casi in `tests/test_backup_crypto.py` (Fuorigiri) e `tests/test_revision_november.py` (A Ruota). Dai flussi utente il difetto non era raggiungibile: entrambe le app cifrano in una cartella temporanea nuova.
+
 ## Cosa derivare
 
 **Cifratura a blocchi, Fuorigiri e A Ruota.** A Ruota dichiara la derivazione nel proprio modulo. Chiave da scrypt, nonce dall'indice, autenticazione di intestazione/indice/ultimo blocco e lettura dei blocchi AES-GCM hanno già due consumatori. Propongo di derivare queste operazioni nel core dopo la correzione, mantenendo facoltativa la dipendenza da `cryptography` per chi usa gli altri moduli. Le app possiedono ancora magic, versione, tipo di contenuto, suffissi, limiti scrypt, messaggi e pubblicazione/ripristino del file. Il massimo di `n` accettato in lettura è oggi 2²⁰ in Fuorigiri e 2¹⁷ in A Ruota. Prima della consegna verificare file storici di ciascun formato, nuova scrittura leggibile dal lettore precedente, password errata, troncamento e alterazione dell'intestazione. La proposta estende il core soltanto alle primitive e richiederebbe un aggiornamento esplicito di ADR-004.
