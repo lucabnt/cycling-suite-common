@@ -1,26 +1,14 @@
 # Integrare Fuorigiri, Ammiraglia e A Ruota
 
-## Core 0.2.0 — 19 novembre 2026
+## Consumatori
 
-Consegnato a Fuorigiri e Ammiraglia con `sync-core.py --install` e `--check`; A Ruota resta su 0.1.2 (app sospesa). `verify-core.py` confronta ora tutti i moduli della wheel con quelli installati. Contenuto e confini in [CORE_PYTHON.md](CORE_PYTHON.md); esiti dei test nelle verifiche delle due app.
-
-## Stato verificato il 16 novembre 2026
-
-| App | UI | Core Python | Installazione con hash nei workflow |
+| App | Repository | UI | Core Python |
 |---|---|---|---|
-| Fuorigiri | 0.2.9 | 0.1.2 | `verify.yml` e `desktop-build.yml` |
-| Ammiraglia | 0.2.9 | 0.1.2 | `verify.yml` |
-| A Ruota | 0.2.9 | 0.1.2 | `f0.yml` e `f1.yml` |
+| Fuorigiri Performance Lab | [`performance-lab`](https://github.com/lucabnt/performance-lab) | 0.2.9 | 0.2.0 |
+| Ammiraglia | `club-lab` (privata) | 0.2.9 | 0.2.0 |
+| A Ruota Training Lab | `training-lab` (privata, sospesa) | 0.2.9 | 0.1.2 |
 
-Superati `sync:ui --check` e `sync-core.py --check` sui tre checkout. Le tre copie di `scripts/lock_hashes.py` hanno lo stesso SHA-256 della sorgente comune. [Valutazione delle prossime derivazioni](REVISIONE_SUITE_2026-11-16.md).
-
-## Consegna UI 0.2.9 — 8 novembre 2026
-
-Allineati Fuorigiri, Ammiraglia e A Ruota tramite sync:ui e --check al pacchetto 0.2.9, SHA-256 `b2d93ec844cbf4a399dca37d9bfc6e8a7990320d565886be2d0a262c304b72f4`. Correzione del blocco di scorrimento residuo alla chiusura simultanea di dialoghi annidati. Nessun core Python, dato o formato modificato; nessun nuovo installer/APK o pubblicazione.
-
-Verifiche: common 17 test JavaScript (quattro nuove regressioni sul lock, tutte le sei permutazioni di chiusura di tre finestre), 3 test core Python e build UI/catalogo. Test/build frontend dei consumatori: Fuorigiri 43, Ammiraglia 6, A Ruota 20, tutti passati; controlli standalone UI e allineamento sorgenti/tarball/lock riusciti. Browser compilato Fuorigiri: riprodotto overflow hidden senza finestre prima della correzione; con 0.2.9, annullamento lascia bloccato il genitore, eliminazione libera la pagina e la pagina successiva scorre. Prova web, non Android nativo né collaudo GUI completo delle altre due app.
-
-Le matrici datate precedenti rimangono fotografie storiche delle rispettive consegne.
+Le app possono restare temporaneamente su versioni diverse: ogni app tiene la propria matrice delle versioni collaudate e non dichiara automaticamente compatibili quelle nuove. Le verifiche `--check` provano l'allineamento dei byte, non qualificano nuovamente installer, APK o dispositivi.
 
 ## Artefatto versionato senza dipendenza dal percorso del collega
 
@@ -39,6 +27,8 @@ Una versione già consegnata con byte diversi viene rifiutata: incrementare la v
 
 Se il checkout common è modificato, `source_dirty=true` lo rende esplicito: prima della release produrre l'artefatto da commit/tag stabile. I checksum assicurano coerenza dei byte, non sostituiscono la fiducia nella sorgente o firme di pubblicazione.
 
+Il runtime Python segue una procedura analoga con `scripts/sync-core.py`: [consegna del core](CORE_PYTHON.md#consegna-riproducibile).
+
 ### Procedura manuale equivalente
 
 1. Nella repository comune: `npm ci`, `npm test`, `npm run build`, `npm run pack:ui`.
@@ -49,40 +39,20 @@ Se il checkout common è modificato, `source_dirty=true` lo rende esplicito: pri
 
 La normale build dell’app usa `npm ci` e non cerca cartelle sul PC dello sviluppatore. Non usare `file:../../cycling-suite-common/packages/ui` nelle release: quel percorso non esiste su CI o sul PC degli altri collaboratori. Durante lo sviluppo locale è possibile collegare una copia di lavoro, ma prima della consegna ripristinare la dipendenza versionata e verificarla.
 
-## Primo uso in Ammiraglia
+## Uso nelle app
 
-React 19 + TypeScript. Importare tema/componenti e gli export documentati in packages/ui/README.md. La versione 0.2.2 fornisce gli stili della shell: importare `theme.css`, `components.css`, `application.css` e infine gli stili delle pagine. Conservare nomi, loghi applicativi e voci specifiche. I wrapper `Modal`/`Dialog` devono delegare al componente comune; evitare copie di componenti, validazione tempi o CSS condivisi. Non copiare style.css o le pagine di analisi di Fuorigiri come base permanente.
+React 19 + TypeScript. Importare tema/componenti e gli export documentati in [packages/ui/README.md](../packages/ui/README.md): `theme.css`, `components.css`, `application.css` e infine gli stili delle pagine. Conservare nomi, loghi applicativi e voci specifiche. I wrapper locali `Modal`/`Dialog` devono delegare al componente comune; evitare copie di componenti, validazione tempi o CSS condivisi.
 
-L’app importa `SuiteBranding` con productName="Ammiraglia"; non aggiungere una preferenza per cambiarne società/logo/attribuzione. Le autorizzazioni e gli stati di sync devono provenire dal proprio backend: il pacchetto UI non li implementa né li simula nelle app reali.
+Ogni app importa `SuiteBranding` con il proprio `productName`; non aggiungere una preferenza per cambiarne società, logo o attribuzione. Autorizzazioni e stati di sync provengono dal backend dell'app: il pacchetto UI non li implementa né li simula.
 
-## Integrazione iniziale Fuorigiri
-
-Fuorigiri consuma Field, SortableTable, DataTable, SuiteBranding e i CSS del pacchetto. I wrapper compatibili rimangono nei moduli esistenti per non cambiare tutti gli import in una sola volta. Il logo per report PDF rimane anche nel backend di Fuorigiri; l’immagine UI condivisa è lo stesso originale, verificabile per SHA256.
-
-Il motore, gli archivi e la sincronizzazione non vengono spostati nella 0.1.0. Questa estrazione non cambia schema del DB, autenticazione, nomi degli eseguibili o metodi fisiologici.
+Motore, archivi e sincronizzazione restano nelle app. L'adozione della libreria non cambia schema del DB, autenticazione, nomi degli eseguibili o metodi fisiologici.
 
 ## Coordinamento dei rilasci
 
-Una modifica comune: correggere qui → test e catalogo → nuova versione → nuovo tarball → aggiornamento e verifica di ogni app. Le app possono restare temporaneamente su versioni diverse; tenere una matrice di quelle collaudate e non dichiarare automaticamente compatibili nuove versioni.
+Una modifica comune: correggere qui → test e catalogo → nuova versione → nuovo tarball → aggiornamento e verifica di ogni app. La libreria non impone una pubblicazione sincronizzata degli installer.
 
-Matrice locale aggiornata il 25 ottobre 2026: Fuorigiri frontend 0.10.0 + UI **0.2.8**, Ammiraglia frontend 0.1.0 + UI **0.2.8**. Consegna versionata eseguita per entrambe; test/build frontend riusciti (34 Fuorigiri, 6 Ammiraglia). Ammiraglia non adotta automaticamente layout mobili o un contenitore Android: la presenza del pacchetto non prova la stessa adozione di Fuorigiri. Ogni app conserva i propri test/build. La libreria non impone una pubblicazione sincronizzata degli installer.
-
-Per verificare l’allineamento corrente: `npm run sync:ui -- --app ../club-lab --app ../performance-lab --app ../training-lab --check`. Il precedente disallineamento di Ammiraglia alla 0.2.2 è superato dalla consegna del 25 ottobre; i candidati compilati precedentemente conservano la propria versione UI.
+Convenzione delle schede: comandi contestuali in testata, filtri ed elenco dopo; modello/file e istruzioni estese su richiesta. Appartenenze collettive in Gruppi, individuali nel profilo. Layout delle pagine, import CSV, mapping e autorizzazioni restano applicativi; non si aggiungono funzioni per uniformare nominalmente i menu.
 
 ## Adozione Android
 
-Seguire [pratiche Android](ANDROID_BEST_PRACTICES.md) e [contratti UI](UI_ANDROID.md). La classe `android` è attivata dal prodotto dopo il riconoscimento del contenitore; restringere il browser non deve abilitare API native. Il common non imposta orientamento, persistenza della società, cattura di Back o motore grafico. Il catalogo `/?android` permette di verificare i componenti web separatamente dai gate APK/dispositivo.
-
-## Allineamento del 2 novembre 2026
-
-| Consumatore | Repository corrente | UI | Core Python | Verifica |
-|---|---|---|---|---|
-| Ammiraglia | `club-lab` | 0.2.8 | 0.1.2 | UI sorgenti/tarball/lock e core/installazione verificati |
-| Fuorigiri Performance Lab | `performance-lab` (già `test-analysis`) | 0.2.8 | 0.1.2 | UI sorgenti/tarball/lock e core/installazione verificati |
-| A Ruota Training Lab | `training-lab` | 0.2.8 | 0.1.2 | UI sorgenti/tarball/lock e core/installazione verificati |
-
-Il 15 novembre Fuorigiri usava già `requirements-lock-windows.hashes` nei workflow con `--require-hashes`. La matrice del 16 novembre registra la successiva verifica delle tre app.
-
-I controlli `sync:ui --check` e `sync-core.py --check` sono riusciti sui tre checkout. Gli artefatti sono già identici alle sorgenti comuni: non serve una nuova versione o consegna. La provenienza originale degli artefatti resta conservata. Questi controlli non qualificano nuovamente installer, APK o dispositivi.
-
-Le ultime modifiche organizzano i comandi contestuali nella testata, seguiti da filtri ed elenco; modello/file e istruzioni estese si aprono su richiesta. Le appartenenze collettive si gestiscono in Gruppi, quelle individuali nel profilo. Questa convenzione vale per la suite, ma layout delle pagine, import CSV, mapping e autorizzazioni restano applicativi. Non richiede spostare i tracciati di prodotto nel common o aggiungere funzioni per uniformare nominalmente i menu.
+Seguire [pratiche Android](ANDROID_BEST_PRACTICES.md) e [contratti UI](UI_ANDROID.md). La classe `android` è attivata dal prodotto dopo il riconoscimento del contenitore; restringere il browser non deve abilitare API native. Il common non imposta orientamento, persistenza della società, cattura di Back o motore grafico. Il catalogo `/?android` permette di verificare i componenti web separatamente dai gate APK/dispositivo. La presenza del pacchetto in un'app non prova l'adozione Android: oggi solo Fuorigiri ha un contenitore Android.

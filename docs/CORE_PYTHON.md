@@ -24,7 +24,7 @@ Su richiesta esplicita, il core riceve le parti comuni di Fuorigiri e Ammiraglia
 
 **Comportamenti cambiati, dichiarati.** CSV: Fuorigiri ora neutralizza anche testo con spazi o a capo prima della formula (la lettura resta reversibile); Ammiraglia non antepone più l'apice ai testi numerici come `-12`. File: le scritture JSON di Fuorigiri passano per fsync. Sync Fuorigiri v1: la pubblicazione concorrente dello stesso evento da parte di due amministratori non fa più fallire lo scambio. Ordine di lettura degli eventi Ammiraglia per nome (l'ingest resta transazionale).
 
-**Non derivato.** Catena delle politiche e rinnovi (solo Ammiraglia), revoche monotone e congelamento degli eventi accettati (solo Fuorigiri), applicazione dei candidati e DAG, pagine v2, backup a blocchi (proposta separata nella [revisione del 16 novembre](REVISIONE_SUITE_2026-11-16.md)). Un motore di sync unico richiederebbe un nuovo formato di scambio e la migrazione dei dispositivi: decisione distinta, non presa.
+**Non derivato.** Catena delle politiche e rinnovi (solo Ammiraglia), revoche monotone e congelamento degli eventi accettati (solo Fuorigiri), applicazione dei candidati e DAG, pagine v2, backup a blocchi. Un motore di sync unico richiederebbe un nuovo formato di scambio e la migrazione dei dispositivi: decisione distinta, non presa.
 
 A Ruota (`training-lab`, sospesa) resta su core 0.1.2: nessuna consegna.
 
@@ -68,6 +68,4 @@ Non modificare il vendor a mano. Non usare import da repository sorelle o dipend
 
 Fuorigiri conserva adattatori per i vecchi nomi di canale/cartella, i servizi del portachiavi `Fuorigiri.WebDAV` e `Fuorigiri.Cloud`, l'adattatore Android esistente e il nome del lock. Ammiraglia usa namespace separati. Nessun archivio reale migrato durante il collaudo.
 
-## Consumatori correnti — 2 novembre 2026
-
-Ammiraglia (`club-lab`), Fuorigiri (`performance-lab`, già `test-analysis`) e A Ruota (`training-lab`) consumano core 0.1.2 e UI 0.2.8. Il controllo common `--check` ha verificato per tutti e tre wheel, derivazione corrente e installazione Python autonoma. Nessuna nuova wheel necessaria per le recenti modifiche dei flussi applicativi.
+Consumatori e versioni correnti: [matrice di integrazione](INTEGRAZIONE.md#consumatori).

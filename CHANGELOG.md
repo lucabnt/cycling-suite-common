@@ -1,5 +1,14 @@
 # Changelog
 
+## 20 novembre 2026 — preparazione alla pubblicazione
+
+- README riscritto per lettori esterni: app consumatrici, pacchetti e versioni correnti (UI 0.2.9, core 0.2.0), indice della documentazione.
+- Rimossi dalla repository i documenti interni datati (revisioni delle app, valutazioni, registri di verifica e riallineamento UI); `INTEGRAZIONE.md`, `UI_ANDROID.md` e `CORE_PYTHON.md` conservano solo procedure, contratti e stato corrente.
+- README con collegamento a Fuorigiri, stato delle repository delle app e crediti del marchio a Progetto Ciclismo - Rodengo Saiano A.S.D.
+- Nuovo `SECURITY.md` con segnalazione privata delle vulnerabilità.
+- CI: Python 3.12 con `cryptography==50.0.2`; `CYCLING_SUITE_REQUIRE_CRYPTO=1` fa fallire `test_core_crypto.py` invece di saltarlo, così i vettori byte per byte girano a ogni push.
+- Vite 6.4.6 (avviso GHSA-8g5g-mxqh-grgj sul server di sviluppo del catalogo). Nessuna nuova versione di UI o core.
+
 ## 19 novembre 2026 — core 0.2.0
 
 - Nuovi moduli `canonical`, `crypto`, `files`, `csv_safety`, `branding`, `jobs`, `exchange`, derivati da Fuorigiri e Ammiraglia. Formati e namespace restano nelle app.

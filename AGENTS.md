@@ -16,7 +16,7 @@ Common è l'unica fonte di verità delle parti condivise di Fuorigiri (`performa
 - `--check` richiede versione e impronta sorgenti correnti, oltre a integrità tarball/lockfile. Le verifiche standalone delle app restano indipendenti dal clone common. Non modificare direttamente il vendor.
 - Import CSS: tema, componenti, application.css, poi layout specifici. Per i cambi comuni usare nuova versione e consegna esplicita, mai un branch mobile o un percorso a una repository sorella nelle dipendenze.
 - Niente dati reali, rete o storage nella UI comune. Preservare GPL, sorgenti e branding societario fisso. Il codice comune non condivide automaticamente archivi, autorizzazioni o chiavi.
-- Riferimenti: README.md, docs/ARCHITETTURA.md, docs/INTEGRAZIONE.md e docs/RIALLINEAMENTO_UI.md. Mantenere queste istruzioni aggiornate quando cambiano i confini stabili.
+- Riferimenti: README.md, docs/ARCHITETTURA.md, docs/INTEGRAZIONE.md, docs/CORE_PYTHON.md e docs/UI_ANDROID.md. Revisioni, valutazioni e registri di verifica interni restano fuori dalla repository pubblica (copia locale in `.local/docs-interni/`, ignorata): non ripubblicarli. Mantenere queste istruzioni aggiornate quando cambiano i confini stabili.
 
 - Per nuove app o modifiche Android leggere [ANDROID_BEST_PRACTICES.md](docs/ANDROID_BEST_PRACTICES.md). Documentare adozione e verifiche nel prodotto; non assumere che una pratica descritta sia già collaudata in tutte le app.
 

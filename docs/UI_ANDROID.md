@@ -39,16 +39,12 @@ Da common: `npm test`, `npm run build`, `npm run dev`, poi aprire `http://127.0.
 3. Aprire fullscreen: niente fascia titolo visibile, nome accessibile e X presenti. Il pannello è chiuso inizialmente; aprirlo per vedere i dati sintetici. Esc chiude la superficie. Il demo non implementa le priorità Back native o i modi Plotly.
 4. Verificare anche larghezze ridotte e landscape nel browser. Queste prove non certificano orientamento, barre di sistema, tastiera Android, TalkBack, APK o telefono ARM64.
 
-Allineamento dei consumatori: `npm run sync:ui -- --app ../club-lab --app ../performance-lab --app ../training-lab --check`. Dal 25 ottobre 2026 anche Ammiraglia consuma 0.2.8: nessuna adozione Android implicita o aggiornamento dei suoi installer precedenti.
+Allineamento dei consumatori: `npm run sync:ui -- --app ../club-lab --app ../performance-lab --app ../training-lab --check`. Consumare il pacchetto non implica un'adozione Android nell'app.
 
-## Esiti del 21 ottobre 2026
+## Limiti delle prove web
 
-- `npm test`: **13 test JavaScript e 3 test Python del core superati**. Nuovi casi: pagina controllata/riduzione dei record, nome accessibile e pannello chiuso in fullscreen, comandi dopo la superficie, status/errore recuperabile.
-- `npm run build`: libreria e catalogo compilati. Nessuna modifica finale ai byte del pacchetto UI consegnato; `sync:ui -- --app ../test-analysis --check` conferma l’allineamento della 0.2.8. Le modifiche precedenti già presenti nel checkout sono conservate.
-- Browser a **390 × 844**: seconda pagina, editor e ritorno con pagina conservata, filtro con un risultato e reset, zero e mancanti, figlio chiuso dal primo Esc, conferma di scarto tramite X. Corretto nel solo catalogo il colore dei titoli delle schede, che ereditavano il bianco dei pulsanti dimostrativi.
-- Browser a **844 × 390**: superficie fullscreen senza fascia visiva, chiusura e pannello comandi/dati; verificato il pannello inizialmente chiuso e poi aperto. Catalogo desktop caricato dopo il ripristino del viewport.
-- **Sequenza Esc ripetuti da qualificare:** dopo la chiusura del figlio, un secondo Esc automatizzato ha lasciato il messaggio di scarto in un dialogo nativo chiuso. La X mostra invece la conferma nel dialogo aperto. Riprodotto anche con l’API tastiera del browser: non è dimostrato se dipenda dal percorso di automazione o dalla gestione del browser. Non dichiarare superata questa sequenza né il Back Android sulla base di questa prova; verificare su WebView/emulatore e mantenere il criterio di accettazione del punto 2.
-- Nessuna build APK, prova IME/TalkBack o telefono eseguita. Nessuna modifica alle app, agli archivi o agli installer; Ammiraglia non viene aggiornata implicitamente.
+- Le prove del catalogo non sostituiscono build APK, IME, TalkBack o telefono.
+- Esc ripetuti dopo la chiusura di un dialogo figlio vanno verificati su WebView/emulatore: in automazione browser il comportamento non è risultato conclusivo. Non dichiarare superato il Back Android sulla base del solo catalogo.
 
 Le catture seguenti provengono dal catalogo web con dati inventati, **non** da un emulatore o da Fuorigiri. Aggiornarle insieme a modifiche delle relative viste; conservare formato, provenienza e dimensioni effettive.
 

@@ -9,6 +9,7 @@ global interpreter does not provide it.
 import base64
 import itertools
 import json
+import os
 import sys
 import unittest
 from pathlib import Path
@@ -21,6 +22,8 @@ VECTORS = ROOT / 'tests/vectors'
 try:
     import cryptography  # noqa: F401
 except ImportError:  # pragma: no cover - reported as skip
+    if os.environ.get('CYCLING_SUITE_REQUIRE_CRYPTO') == '1':
+        raise
     cryptography = None
 
 FIXED_TIME = 1795000000
