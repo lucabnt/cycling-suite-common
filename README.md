@@ -8,6 +8,8 @@ Librerie condivise da tre applicazioni open source per il ciclismo giovanile, sv
 
 Questa repository non contiene né avvia le applicazioni. Ogni app ha repository, installer, archivi e versioni propri e incorpora una copia versionata delle librerie: non serve un clone di questa repository per compilarle o verificarle. I riferimenti `../club-lab`, `../performance-lab` e `../training-lab` nei documenti indicano checkout affiancati usati dagli script di consegna; per le repository private servono i relativi accessi.
 
+> **In English.** Cycling Suite Common holds the shared libraries (GPL-3.0-or-later) of three youth-cycling applications developed for Progetto Ciclismo - Rodengo Saiano A.S.D., including [Fuorigiri Performance Lab](https://github.com/lucabnt/performance-lab). It contains two packages: `@cycling-suite/ui`, a React 19 + TypeScript component library (theme, responsive shell, fields, tables, dialogs, time inputs, Android-oriented components and fixed club branding) with no network, storage or physiology code; and `cycling-suite-core`, a Python 3.12+ runtime (OS keyring, folder/WebDAV transports, instance lock, Qt window, cryptographic primitives, atomic writes, CSV injection guards, sync jobs and exchange invariants). Data, file formats, access models and sync engines stay in each application. The libraries are not published to a registry: each app vendors a versioned tarball or wheel with recorded checksums, so apps build without this repository. Tags `ui-v*` and `core-v*` mark the delivered versions; the sources of Fuorigiri 0.10.0-alpha.1 are `ui-v0.2.9` and `core-v0.2.0`. To report a vulnerability see [SECURITY.md](SECURITY.md). The rest of the documentation is in Italian.
+
 ## Contenuto
 
 | Pacchetto | Versione | Contenuto |
